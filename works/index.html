@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - Rebel Yang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        .work-card {
+            border: var(--border-thick);
+            background: white;
+            transition: transform 0.3s;
+            cursor: pointer;
+            display: block; /* Make anchor block */
+        }
+        .work-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 10px 10px 0 var(--c-blue);
+        }
+        .thumb {
+            width: 100%; height: 220px;
+            background: #ddd;
+            border-bottom: var(--border-thick);
+            overflow: hidden;
+        }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .work-card:hover .thumb img { transform: scale(1.05); }
+
+        .info { padding: 25px; }
+        .work-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 10px; line-height: 1.2; }
+        .meta-tags { display: flex; gap: 10px; margin-bottom: 15px; font-size: 0.8rem; font-weight: bold; }
+        .tag { background: var(--c-yellow); padding: 4px 8px; border: 1px solid black; }
+        .desc { font-size: 0.9rem; color: var(--c-gray); line-height: 1.4; }
+    </style>
+</head>
+<body>
+    <div class="bg-layer">
+        <!-- 装饰 -->
+        <div class="shape" style="width:200px; height:200px; border:10px solid var(--c-red); right:-50px; bottom:-50px;"></div>
+    </div>
+
+    <button id="langToggle" class="lang-switch">CN / EN</button>
+
+    <nav class="side-nav">
+        <a href="../index.html" class="nav-item" data-page="home">HOME</a>
+        <a href="index.html" class="nav-item active" data-page="works">WORKS</a>
+        <a href="../thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
+    </nav>
+
+    <div class="container">
+        <h1 class="site-title">WORKS</h1>
+        
+        <div class="works-grid">
+            
+            <!-- 作品 1 -->
+            <a href="break-then.html" class="work-card">
+                <div class="thumb">
+                    <!-- 请替换图片 src -->
+                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=BREAK+THEN" alt="Break Then">
+                </div>
+                <div class="info">
+                    <div class="work-title">Break, then…</div>
+                    <div class="meta-tags">
+                        <span class="tag">2025</span>
+                        <span class="tag">AI Video</span>
+                    </div>
+                    <div class="desc">
+                        <span class="lang-cn">生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意在成长过程中被不断修剪...</span>
+                        <span class="lang-en">Life is inherently as magnificent and mysterious as the Big Bang...</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 作品 2 -->
+            <a href="sands-of-illusion.html" class="work-card">
+                <div class="thumb">
+                    <!-- 请替换图片 src -->
+                    <img src="https://via.placeholder.com/600x400/FFD700/000000?text=SANDS+OF+ILLUSION" alt="Sands of Illusion">
+                </div>
+                <div class="info">
+                    <div class="work-title">Sands of Illusion</div>
+                    <div class="meta-tags">
+                        <span class="tag">2025</span>
+                        <span class="tag">AI Video</span>
+                    </div>
+                    <div class="desc">
+                        <span class="lang-cn">一支商队在丝路迷宫中的轮回之旅，于几何幻境中叩问文明相遇的永恒真相。</span>
+                        <span class="lang-en">A merchant caravan’s cyclical journey through a Silk Road labyrinth...</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+    <script src="../script.js"></script>
+</body>
+</html>

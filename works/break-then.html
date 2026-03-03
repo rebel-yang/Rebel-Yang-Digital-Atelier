@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break, then... - Rebel Yang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .media-box {
+            width: 100%; aspect-ratio: 16/9; background: black;
+            border: var(--border-thick); margin-bottom: 40px;
+        }
+        video { width: 100%; height: 100%; object-fit: contain; }
+        
+        .header-block { border-bottom: 2px solid #ccc; margin-bottom: 30px; padding-bottom: 20px; }
+        .project-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; }
+        .tags span { display: inline-block; background: var(--c-yellow); padding: 5px 15px; font-weight: bold; border: 1px solid black; margin-right: 10px; }
+        
+        .content-section { margin-bottom: 40px; }
+        .section-label { 
+            display: inline-block; background: var(--c-black); color: white; 
+            padding: 5px 15px; font-weight: bold; margin-bottom: 15px; 
+        }
+        /* 不同板块不同色 */
+        .sec-blue .section-label { background: var(--c-blue); }
+        .sec-red .section-label { background: var(--c-red); }
+    </style>
+</head>
+<body>
+    <button id="langToggle" class="lang-switch">CN / EN</button>
+    <nav class="side-nav">
+        <a href="../index.html" class="nav-item" data-page="home">HOME</a>
+        <a href="index.html" class="nav-item active" data-page="works">WORKS</a>
+        <a href="../thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
+    </nav>
+
+    <div class="container">
+        <!-- 视频区域 -->
+        <div class="media-box">
+            <!-- 替换为您的视频文件 -->
+            <video controls poster="https://via.placeholder.com/1280x720/000000/FFFFFF?text=VIDEO+POSTER">
+                <source src="your-video-file.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="header-block">
+            <h1 class="project-title">Break, then…</h1>
+            <div class="tags">
+                <span>2025</span>
+                <span>AI Video</span>
+            </div>
+        </div>
+
+        <!-- 详细内容 -->
+        <div class="lang-cn">
+            <div class="content-section">
+                <div class="section-label">简介</div>
+                <p>“打破”意味着突破、打破规则、分崩离析。那么，“破”之后呢？是终点，似乎也是另一个起点……</p>
+                <p>生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意在成长过程中被不断修剪或规训，最终变成只会复制粘贴的空心人。坚持最初心中的微光也许终究不敌众多教条，却也是打破循环的唯一可能。</p>
+            </div>
+            
+            <div class="content-section sec-blue">
+                <div class="section-label">创作灵感</div>
+                <p>身边朋友因为被父母入侵式的爱包裹而感到痛苦，并从小努力想要逃离——此为灵感来源与主题。</p>
+            </div>
+
+            <div class="content-section sec-red">
+                <div class="section-label">视听与隐喻解析</div>
+                <p>当涉及到时间、宇宙的话题，自然想到用荧光粒子跳动来表达。关于生命的起源，宇宙大爆炸和孕育生命的过程，在我看来相通且一样神圣。片头的形态表达将彗尾与DNA双螺旋结构结合；精子卵子结合形成受精卵；星云的张合与微弱的心跳声同频共振；时间流逝，伴随着音效逐渐变成孩童的嬉笑声，画面开始从受精卵的隐喻化作时钟，再化作转动的摩天轮，心跳声也逐渐扎实。</p>
+                <p>孩子长大了，他蹒跚学步，对世界充满美好的想象。他幻想抓一把天上粉色的云吃掉，口感一定很像棉花糖（这其实是我本人童年的幻想），天真烂漫让他成长，他躺在草坪上眺望星空，或吹起自由的泡泡。泡泡放大成多彩的眼镜，他将看见成人世界的空洞与冰冷，也是画面最后一次出现彩色，心跳戛然而止，他的天性将被抹杀。</p>
+                <p>瞳孔被破碎的玻璃手上了发条，这是本体被异物入侵、被规训的开始，同时，也是八音盒开始机械跳舞的准备工作。女孩开始舞蹈，但当她在舞蹈中加入自己的创意，或者出现卡顿（卡顿处将胡桃夹子的bgm做了变调），那就是错误的，是不被允许的，是会被玻璃手捏碎摧毁的。这里将女孩的颜色与之前吃进去的粉色云朵做了呼应与统一。八音盒的外壳设计既像幕布一样飘动，但其实又像一双无形的手将女孩包围。</p>
+                <p>最终画面黑白，芭蕾舞女孩在刺耳的传送带上量产，画面频闪，是心脏处仍存在的微弱的粉色荧光。也许这一抹荧光无用，终究会被四周黑白淹没；又或许是黑白之中唯一坚持闪烁的色彩……</p>
+            </div>
+
+            <div class="content-section">
+                <div class="section-label">创作工具与幕后</div>
+                <p><strong>画面生成：</strong>Midjourney V7（核心概念与定调）、Nano Banana / 即梦（细节调整与一致性表达）。</p>
+                <p><strong>动态生成：</strong>Vidu / 清影 / 即梦 / Midjourney。</p>
+                <p><strong>工具取舍：</strong>Vidu在攻克“八音盒女孩舞蹈不发生畸变”的问题上表现优异；Midjourney适合简单星云自转，复杂动作易崩坏。</p>
+                <p><strong>音频/音效：</strong>Vidu / Pixabay。</p>
+                <p><strong>后期剪辑：</strong>剪映。</p>
+            </div>
+        </div>
+
+        <div class="lang-en">
+            <div class="content-section">
+                <div class="section-label">Overview</div>
+                <p>“Break” means breaking through, breaking the rules, and breaking down. So, ‘Break, then?’ —It is the end, yet seemingly also another beginning…</p>
+                <p>Life is inherently as magnificent and mysterious as the Big Bang. Yet, during the process of growing up, the unconstrained creativity of childhood is constantly pruned and disciplined, until we eventually become hollow creatures reduced to mere copy-pasting.</p>
+            </div>
+
+            <div class="content-section sec-blue">
+                <div class="section-label">Creative Inspiration</div>
+                <p>The inspiration and theme stem from the pain my friends have experienced due to being suffocated by their parents’ “invasive love,” and their lifelong struggle to escape it.</p>
+            </div>
+
+            <div class="content-section sec-red">
+                <div class="section-label">Visual & Audio Analysis</div>
+                <p>When addressing themes of time and the cosmos, I naturally gravitate towards using pulsating fluorescent particles. In my view, the origin of life, the Big Bang, and the process of gestation are interconnected and equally sacred. The opening visual sequence fuses the tail of a comet with the double helix structure of DNA.</p>
+                <p>The child grows... He fantasizes about plucking pink clouds from the sky to eat... The bubble then magnifies into a pair of colorful glasses, through which he sees the hollowness and coldness of the adult world. This marks the last appearance of color in the piece.</p>
+                <p>A shattered glass hand winds the pupil like a clockwork mechanism... The girl begins to dance... However, the moment she injects her own creativity or a “glitch” occurs, she is deemed wrong... forbidden and instantly crushed.</p>
+                <p>The final scene shifts to black and white... Deep within the chest, a faint pink fluorescent light persists.</p>
+            </div>
+
+            <div class="content-section">
+                <div class="section-label">Creation Tools</div>
+                <p><strong>Image Generation:</strong> Midjourney V7, Nano Banana / Dreamina.</p>
+                <p><strong>Motion Generation:</strong> Vidu, Qingying, Dreamina, Midjourney.</p>
+                <p><strong>Audio:</strong> Vidu, Pixabay.</p>
+                <p><strong>Post-Production:</strong> CapCut.</p>
+            </div>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+</body>
+</html>

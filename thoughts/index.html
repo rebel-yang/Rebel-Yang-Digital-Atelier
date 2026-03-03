@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoughts - Rebel Yang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        table {
+            width: 100%; border-collapse: collapse;
+            background: white; border: var(--border-thick);
+            box-shadow: 10px 10px 0 var(--c-yellow);
+        }
+        th, td { border: 1px solid #ccc; padding: 15px; vertical-align: top; }
+        th { background: var(--c-black); color: white; text-align: left; font-weight: 900; text-transform: uppercase; }
+        td:first-child { font-weight: bold; background: #fafafa; border-right: 3px solid var(--c-black); width: 20%; color: var(--c-red); }
+        .phase-title { display: block; margin-top: 10px; font-weight: bold; color: var(--c-blue); }
+    </style>
+</head>
+<body>
+    <button id="langToggle" class="lang-switch">CN / EN</button>
+    <nav class="side-nav">
+        <a href="../index.html" class="nav-item" data-page="home">HOME</a>
+        <a href="../works/index.html" class="nav-item" data-page="works">WORKS</a>
+        <a href="index.html" class="nav-item active" data-page="thoughts">THOUGHTS</a>
+    </nav>
+
+    <div class="container">
+        <h1 class="site-title">THOUGHTS</h1>
+        
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase / 阶段</th>
+                        <th>Core Question / 核心问题</th>
+                        <th>Key Actions / 关键行动</th>
+                        <th>Output / 产出</th>
+                    </tr>
+                </thead>
+                <tbody class="lang-cn">
+                    <tr>
+                        <td>第一阶段：主题定义与规划</td>
+                        <td>我要做个关于“什么”的作品？</td>
+                        <td>
+                            需求分析：明确创作的核心概念。<br>
+                            市场定位：思考作品的受众。
+                        </td>
+                        <td>1. 核心主题</td>
+                    </tr>
+                    <tr>
+                        <td>第二阶段：生成前规划</td>
+                        <td>它应该“长什么样”？</td>
+                        <td>
+                            风格定义：确定视觉风格与主色调。<br>
+                            结构化拆解：拆解为分镜头。
+                        </td>
+                        <td>2. 视觉风格指南<br>3. 主Prompt<br>4. 分镜头脚本</td>
+                    </tr>
+                    <tr>
+                        <td>第三阶段：生成与粗剪</td>
+                        <td>如何高效产出？</td>
+                        <td>
+                            敏捷开发：批量生成备选镜头。<br>
+                            MVP构建：拼接故事主线。
+                        </td>
+                        <td>5. 原始素材库<br>6. 粗剪版本</td>
+                    </tr>
+                    <tr>
+                        <td>第四阶段：后期与定稿</td>
+                        <td>如何提升品质？</td>
+                        <td>
+                            核心优化：精剪节奏、统一色调。<br>
+                            集成发布：音效设计、混音。
+                        </td>
+                        <td>7. 成片</td>
+                    </tr>
+                </tbody>
+                <tbody class="lang-en">
+                     <tr>
+                        <td>Phase 1: Theme Definition</td>
+                        <td>What is my work “about”?</td>
+                        <td>Requirement Analysis.<br>Market Positioning.</td>
+                        <td>1. Core Theme</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 2: Pre-generation</td>
+                        <td>What should it “look like”?</td>
+                        <td>Style Definition.<br>Structural Decomposition.</td>
+                        <td>2. Style Guide<br>3. Master Prompt<br>4. Shot List</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 3: Generation</td>
+                        <td>How to produce efficiently?</td>
+                        <td>Agile Development.<br>MVP Build.</td>
+                        <td>5. Raw Assets<br>6. Rough Cut</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 4: Finalization</td>
+                        <td>How to refine?</td>
+                        <td>Optimization.<br>Integration & Launch.</td>
+                        <td>7. Final Video</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+</body>
+</html>

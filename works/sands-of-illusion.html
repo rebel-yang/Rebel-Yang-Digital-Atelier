@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sands of Illusion - Rebel Yang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 复用上一页的样式 */
+        .media-box { width: 100%; aspect-ratio: 16/9; background: black; border: var(--border-thick); margin-bottom: 40px; }
+        video { width: 100%; height: 100%; object-fit: contain; }
+        .header-block { border-bottom: 2px solid #ccc; margin-bottom: 30px; padding-bottom: 20px; }
+        .project-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; }
+        .tags span { display: inline-block; background: var(--c-yellow); padding: 5px 15px; font-weight: bold; border: 1px solid black; margin-right: 10px; }
+        .content-section { margin-bottom: 40px; }
+        .section-label { display: inline-block; background: var(--c-black); color: white; padding: 5px 15px; font-weight: bold; margin-bottom: 15px; }
+        .sec-blue .section-label { background: var(--c-blue); }
+        .sec-red .section-label { background: var(--c-red); }
+    </style>
+</head>
+<body>
+    <button id="langToggle" class="lang-switch">CN / EN</button>
+    <nav class="side-nav">
+        <a href="../index.html" class="nav-item" data-page="home">HOME</a>
+        <a href="index.html" class="nav-item active" data-page="works">WORKS</a>
+        <a href="../thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
+    </nav>
+
+    <div class="container">
+        <div class="media-box">
+             <!-- 替换为您的视频文件 -->
+             <video controls poster="https://via.placeholder.com/1280x720/FFD700/000000?text=SANDS+OF+ILLUSION">
+                <source src="your-video-file-2.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="header-block">
+            <h1 class="project-title">Sands of Illusion</h1>
+            <div class="tags">
+                <span>2025</span>
+                <span>AI Video</span>
+            </div>
+        </div>
+
+        <div class="lang-cn">
+            <div class="content-section">
+                <div class="section-label">简介</div>
+                <p>一支商队在丝路迷宫中的轮回之旅，于几何幻境中叩问文明相遇的永恒真相。</p>
+            </div>
+            
+            <div class="content-section sec-blue">
+                <div class="section-label">创作灵感</div>
+                <p>这部作品的灵感源于我的一次中东独行之旅：瞬息万变的沙漠、异域特色的建筑，盘旋的乌鸦……我热衷于探索中西方文化在历史长河中的碰撞、交融与变异，并投射于我的个人美学偏好中：几何结构、色块组合与错视空间。</p>
+            </div>
+
+            <div class="content-section sec-red">
+                <div class="section-label">视听语言与叙事隐喻</div>
+                <p>本片的视觉构建在极简与繁复的辩证关系上。人间的“实体”采用极简几何体块，神性的“虚幻”采用繁复的伊斯兰几何纹样与印度曼陀罗图案。色彩肌理取自敦煌壁画，主色调遵循敦煌三原色（朱砂、青金、石黄），随叙事心境演变；建筑与沙丘的错视运动致敬M.C.埃舍尔，形成视觉迷宫。</p>
+                <p>短片开场，金色沙浪如流动的丝绸，将商队卷入几何迷宫。莲花象征觉悟，骆驼代表坚忍...</p>
+                <p>商队队长仰望佛光，高举红旗，精神之旅正式开启...</p>
+                <p>千手观音殿门开合间，本片进入高潮...“凡所有相，皆是虚妄”...</p>
+                <p><strong>听觉设计：</strong>以高亢明亮的中国竹笛作为主旋律，象征东方起点；融入中亚手鼓的切分节奏与乌德琴的弹拨。</p>
+            </div>
+
+            <div class="content-section">
+                <div class="section-label">创作工具与幕后</div>
+                <p><strong>画面生成：</strong>清影、即梦。</p>
+                <p><strong>动态生成：</strong>即梦（图生视频）。</p>
+                <p><strong>音频/音效：</strong>Stable Audio。</p>
+                <p><strong>后期剪辑：</strong>剪映。</p>
+            </div>
+        </div>
+
+        <div class="lang-en">
+            <div class="content-section">
+                <div class="section-label">Logline</div>
+                <p>A merchant caravan’s cyclical journey through a Silk Road labyrinth, seeking the eternal truths of civilization’s encounter amidst a geometric illusion.</p>
+            </div>
+
+            <div class="content-section sec-blue">
+                <div class="section-label">Creative Inspiration</div>
+                <p>The inspiration for this work stems from a solo journey I took through the Middle East... I am passionate about exploring the collision, fusion, and mutation of Eastern and Western cultures throughout history.</p>
+            </div>
+
+            <div class="content-section sec-red">
+                <div class="section-label">Visual & Audio Analysis</div>
+                <p>The film’s visual construction is built upon the dialectical relationship between minimalism and complexity. The “entities” of the human realm are rendered in minimalist geometric volumes, while the “illusions” of the divine realm employ intricate Islamic geometric patterns.</p>
+                <p><strong>Auditory Design:</strong> A high-pitched, bright Chinese bamboo flute serves as the main melody...</p>
+            </div>
+
+            <div class="content-section">
+                <div class="section-label">Creation Tools</div>
+                <p><strong>Visual:</strong> Qingying, Dreamina.</p>
+                <p><strong>Motion:</strong> Dreamina.</p>
+                <p><strong>Audio:</strong> Stable Audio.</p>
+                <p><strong>Post:</strong> CapCut.</p>
+            </div>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+</body>
+</html>

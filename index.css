@@ -1,0 +1,177 @@
+/* =========================================
+   CORE STYLE: Malevich + Mondrian
+   ========================================= */
+:root {
+    /* 蒙德里安三原色 + 黑白灰 */
+    --c-red: #E33827; 
+    --c-yellow: #F1C32D; 
+    --c-blue: #1D5BB6; 
+    --c-black: #111111; 
+    --c-white: #F4F4F4; 
+    --c-gray: #888888;
+    
+    /* 布局变量 */
+    --nav-width: 70px;
+    --border-thick: 4px solid var(--c-black);
+    --border-thin: 2px solid var(--c-black);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    /* 中文统一黑体，英文无衬线 */
+    font-family: "PingFang SC", "Microsoft YaHei", "SimHei", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    background-color: var(--c-white);
+    color: var(--c-black);
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* 几何背景装饰 (马列维奇式漂浮) */
+.bg-layer {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(#ddd 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.9;
+    mix-blend-mode: multiply;
+    transition: transform 0.5s ease;
+}
+
+/* =========================================
+   NAVIGATION (Right Side Tabs)
+   ========================================= */
+.side-nav {
+    position: fixed;
+    right: 0;
+    top: 20%; /* 稍微靠上 */
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.nav-item {
+    width: var(--nav-width);
+    height: 160px; /* 细长矩形 */
+    background: var(--c-white);
+    border: var(--border-thick);
+    border-right: none; /* 贴边效果 */
+    margin-bottom: -4px; /* 边框重叠 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl; /* 竖排文字 */
+    text-orientation: mixed;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* 悬停光影/位移 */
+.nav-item:hover {
+    transform: translateX(-10px);
+    box-shadow: -5px 5px 0 rgba(0,0,0,0.1);
+}
+
+/* 激活状态填充动画 */
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 0%;
+    z-index: -1;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item.active { color: white; }
+.nav-item.active::before { height: 100%; }
+
+/* 不同页面不同色 */
+.nav-item[data-page="home"].active::before { background: var(--c-red); }
+.nav-item[data-page="works"].active::before { background: var(--c-blue); }
+.nav-item[data-page="thoughts"].active::before { background: var(--c-yellow); }
+/* 黄色背景时文字黑色 */
+.nav-item[data-page="thoughts"].active { color: var(--c-black); }
+
+
+/* =========================================
+   LAYOUT & TYPOGRAPHY
+   ========================================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 100px 100px 60px; /* 右侧留出导航空间 */
+}
+
+h1.site-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    border-bottom: var(--border-thick);
+    padding-bottom: 20px;
+    display: inline-block;
+    background: var(--c-black);
+    color: var(--c-white);
+    padding: 15px 30px;
+}
+
+h2 { font-size: 1.8rem; margin-bottom: 20px; font-weight: 900; }
+h3 { font-size: 1.4rem; margin-bottom: 15px; font-weight: bold; }
+p { margin-bottom: 1.5rem; text-align: justify; color: #333; }
+
+/* 语言切换按钮 */
+.lang-switch {
+    position: fixed;
+    top: 30px; right: 100px;
+    z-index: 1000;
+    font-weight: bold;
+    cursor: pointer;
+    background: var(--c-black);
+    color: var(--c-white);
+    padding: 8px 16px;
+    border: none;
+    font-family: inherit;
+}
+.lang-switch:hover { background: var(--c-red); }
+
+/* 语言显示逻辑 */
+.lang-en { display: none; }
+body.en-mode .lang-cn { display: none; }
+body.en-mode .lang-en { display: block; }
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .side-nav {
+        top: auto; bottom: 0; right: 0; left: 0;
+        flex-direction: row;
+        width: 100%; height: 60px;
+    }
+    .nav-item {
+        width: 33.33%; height: 100%;
+        writing-mode: horizontal-tb;
+        border-right: var(--border-thick);
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    .container { padding: 40px 20px 100px 20px; }
+    h1.site-title { font-size: 1.8rem; }
+    .lang-switch { top: 20px; right: 20px; }
+}
