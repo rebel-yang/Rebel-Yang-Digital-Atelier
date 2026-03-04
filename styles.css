@@ -1,0 +1,79 @@
+/* =========================================
+   CORE STYLE: Malevich + Mondrian
+   ========================================= */
+:root {
+    --c-red: #E33827; 
+    --c-yellow: #F1C32D; 
+    --c-blue: #1D5BB6; 
+    --c-black: #111111; 
+    --c-white: #F4F4F4; 
+    --c-gray: #888888;
+    --nav-width: 70px;
+    --border-thick: 4px solid var(--c-black);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", "SimHei", sans-serif;
+    background-color: var(--c-white);
+    color: var(--c-black);
+    width: 100vw; min-height: 100vh;
+    font-size: 16px; line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+/* 几何背景 */
+.bg-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; pointer-events: none;
+    background-image: radial-gradient(#ddd 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.shape { position: absolute; opacity: 0.9; mix-blend-mode: multiply; transition: transform 0.5s ease; }
+
+/* 导航栏 */
+.side-nav {
+    position: fixed; right: 0; top: 20%;
+    display: flex; flex-direction: column; z-index: 1000;
+}
+.nav-item {
+    width: var(--nav-width); height: 160px;
+    background: var(--c-white); border: var(--border-thick); border-right: none;
+    margin-bottom: -4px;
+    display: flex; align-items: center; justify-content: center;
+    writing-mode: vertical-rl; text-orientation: mixed;
+    font-weight: 900; letter-spacing: 2px; cursor: pointer;
+    position: relative; transition: all 0.3s ease;
+}
+.nav-item:hover { transform: translateX(-10px); }
+.nav-item.active { color: white; }
+.nav-item[data-page="home"].active { background: var(--c-red); }
+.nav-item[data-page="works"].active { background: var(--c-blue); }
+.nav-item[data-page="thoughts"].active { background: var(--c-yellow); color: black; }
+
+/* 通用布局 */
+.container { max-width: 1200px; margin: 0 auto; padding: 60px 100px 100px 60px; }
+h1.site-title {
+    font-size: 3rem; font-weight: 900; text-transform: uppercase;
+    margin-bottom: 60px; border-bottom: var(--border-thick); padding-bottom: 20px;
+    display: inline-block; background: var(--c-black); color: var(--c-white); padding: 15px 30px;
+}
+.lang-switch {
+    position: fixed; top: 30px; right: 100px; z-index: 1000;
+    background: var(--c-black); color: var(--c-white);
+    padding: 8px 16px; border: none; cursor: pointer; font-weight: bold;
+}
+.lang-en { display: none; }
+body.en-mode .lang-cn { display: none; }
+body.en-mode .lang-en { display: block; }
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .side-nav { top: auto; bottom: 0; right: 0; left: 0; flex-direction: row; width: 100%; height: 60px; }
+    .nav-item { width: 33.33%; height: 100%; writing-mode: horizontal-tb; border-right: var(--border-thick); border-bottom: none; margin-bottom: 0; }
+    .container { padding: 40px 20px 100px 20px; }
+    h1.site-title { font-size: 1.5rem; }
+    .lang-switch { top: 20px; right: 20px; }
+}
