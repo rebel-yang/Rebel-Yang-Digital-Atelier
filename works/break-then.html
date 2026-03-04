@@ -6,123 +6,119 @@
     <title>Break, then... - Rebel Yang</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .back-link { 
-            display: inline-block; margin-bottom: 20px; 
-            background: var(--c-black); color: white; padding: 5px 10px;
-            font-family: 'Press Start 2P'; font-size: 10px;
+        .back-link { display: inline-block; margin-bottom: 20px; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; border-bottom: 4px solid var(--c-red); }
+        .back-link:hover { background: var(--c-red); color: white; padding: 0 5px; }
+
+        .media-box {
+            width: 100%; aspect-ratio: 16/9; background: black;
+            border: var(--border); box-shadow: 15px 15px 0 var(--c-black);
+            margin-bottom: 50px;
         }
-        
-        /* 视频框像老式显示器 */
-        .crt-monitor {
-            background: #222; padding: 20px; border: var(--border);
-            box-shadow: 10px 10px 0 var(--c-gray); margin-bottom: 40px;
-        }
-        .media-box { width: 100%; aspect-ratio: 16/9; background: black; }
         video { width: 100%; height: 100%; object-fit: contain; }
 
-        .header-title { font-size: 2.5rem; font-family: 'Press Start 2P'; line-height: 1.4; margin-bottom: 10px; text-shadow: 4px 4px 0 var(--c-yellow); }
-        .meta-row { border-bottom: 4px solid var(--c-black); padding-bottom: 20px; margin-bottom: 40px; }
-        .tag-pill { background: var(--c-red); color: white; padding: 5px 10px; font-weight: bold; border: 2px solid black; margin-right: 10px; }
+        .header { border-bottom: var(--border); padding-bottom: 30px; margin-bottom: 40px; }
+        .p-title { font-size: 3.5rem; font-weight: 900; line-height: 1; margin-bottom: 15px; }
+        .meta span { background: var(--c-black); color: white; padding: 5px 15px; font-weight: bold; margin-right: 10px; }
 
-        .content-block { margin-bottom: 40px; }
-        .block-title { 
-            font-size: 1.2rem; background: var(--c-black); color: var(--c-yellow); 
-            display: inline-block; padding: 10px 20px; font-family: 'Press Start 2P';
-            margin-bottom: 20px; box-shadow: 5px 5px 0 var(--c-gray);
+        /* 内容板块设计 */
+        .section { margin-bottom: 50px; }
+        .sec-head { 
+            display: inline-block; font-size: 1.5rem; font-weight: 900; 
+            color: white; padding: 5px 20px; margin-bottom: 20px;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
         }
-        
-        /* 不同板块配色 */
-        .b-blue .block-title { background: var(--c-blue); color: white; }
-        .b-red .block-title { background: var(--c-red); color: white; }
+        /* 颜色系统 */
+        .c-black { background: var(--c-black); }
+        .c-blue { background: var(--c-blue); }
+        .c-red { background: var(--c-red); }
+        .c-yellow { background: var(--c-yellow); color: black; }
 
-        p { margin-bottom: 20px; text-align: justify; }
+        p { margin-bottom: 20px; font-size: 1.1rem; }
+        strong { color: var(--c-red); }
     </style>
 </head>
 <body>
-    <button id="langToggle" class="lang-switch">CN/EN</button>
+    <button id="langToggle" class="btn-retro lang-switch">CN / EN</button>
     <nav class="side-nav">
         <a href="../index.html" class="nav-item" data-page="home">HOME</a>
         <a href="index.html" class="nav-item active" data-page="works">WORKS</a>
         <a href="../thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
     </nav>
 
-    <div class="container">
-        <a href="index.html" class="back-link">< BACK</a>
+    <div class="container fade-in-up">
+        <a href="index.html" class="back-link">← BACK</a>
 
-        <div class="crt-monitor">
-            <div class="media-box">
-                <video controls poster="../assets/break-poster.jpg">
-                    <source src="../assets/break-video.mp4" type="video/mp4">
-                </video>
-            </div>
+        <div class="media-box">
+            <video controls poster="../assets/break-poster.jpg">
+                <source src="../assets/break-video.mp4" type="video/mp4">
+            </video>
         </div>
 
-        <h1 class="header-title">Break, then…</h1>
-        <div class="meta-row">
-            <span class="tag-pill">2025</span>
-            <span class="tag-pill">AI VIDEO</span>
+        <div class="header">
+            <h1 class="p-title">Break, then…</h1>
+            <div class="meta"><span>2025</span><span>AI Video</span></div>
         </div>
 
         <!-- 中文 -->
         <div class="lang-cn">
-            <div class="content-block">
-                <div class="block-title">简介</div>
+            <div class="section">
+                <div class="sec-head c-black">简介</div>
                 <p>“打破”意味着突破、打破规则、分崩离析。那么，“破”之后呢？是终点，似乎也是另一个起点……</p>
                 <p>生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意在成长过程中被不断修剪或规训，最终变成只会复制粘贴的空心人。</p>
                 <p>坚持最初心中的微光也许终究不敌众多教条，却也是打破循环的唯一可能。</p>
             </div>
             
-            <div class="content-block b-blue">
-                <div class="block-title">创作灵感</div>
+            <div class="section">
+                <div class="sec-head c-blue">创作灵感</div>
                 <p>身边朋友因为被父母入侵式的爱包裹而感到痛苦，并从小努力想要逃离——此为灵感来源与主题。</p>
             </div>
 
-            <div class="content-block b-red">
-                <div class="block-title">视听与隐喻解析</div>
+            <div class="section">
+                <div class="sec-head c-red">视听与隐喻解析</div>
                 <p>当涉及到时间、宇宙的话题，自然想到用荧光粒子跳动来表达。关于生命的起源，宇宙大爆炸和孕育生命的过程，在我看来相通且一样神圣。片头的形态表达将彗尾与DNA双螺旋结构结合；精子卵子结合形成受精卵；星云的张合与微弱的心跳声同频共振；时间流逝，伴随着音效逐渐变成孩童的嬉笑声，画面开始从受精卵的隐喻化作时钟，再化作转动的摩天轮，心跳声也逐渐扎实。</p>
                 <p>孩子长大了，他蹒跚学步，对世界充满美好的想象。他幻想抓一把天上粉色的云吃掉，口感一定很像棉花糖（这其实是我本人童年的幻想），天真烂漫让他成长，他躺在草坪上眺望星空，或吹起自由的泡泡。泡泡放大成多彩的眼镜，他将看见成人世界的空洞与冰冷，也是画面最后一次出现彩色，心跳戛然而止，他的天性将被抹杀。</p>
                 <p>瞳孔被破碎的玻璃手上了发条，这是本体被异物入侵、被规训的开始，同时，也是八音盒开始机械跳舞的准备工作。女孩开始舞蹈，但当她在舞蹈中加入自己的创意，或者出现卡顿（卡顿处将胡桃夹子的bgm做了变调），那就是错误的，是不被允许的，是会被玻璃手捏碎摧毁的。这里将女孩的颜色与之前吃进去的粉色云朵做了呼应与统一。八音盒的外壳设计既像幕布一样飘动，但其实又像一双无形的手将女孩包围。</p>
                 <p>最终画面黑白，芭蕾舞女孩在刺耳的传送带上量产，画面频闪，是心脏处仍存在的微弱的粉色荧光。也许这一抹荧光无用，终究会被四周黑白淹没；又或许是黑白之中唯一坚持闪烁的色彩……</p>
             </div>
 
-            <div class="content-block">
-                <div class="block-title">创作工具与幕后</div>
-                <p><strong>画面生成：</strong>Midjourney V7（核心概念与定调）、Nano Banana / 即梦（细节调整与一致性表达，如“玻璃手”形态统一）。</p>
-                <p><strong>动态生成：</strong>Vidu / 清影 / 即梦 / Midjourney（主要为图生视频）。</p>
-                <p><strong>工具取舍与难点攻克：</strong>Vidu在攻克“八音盒女孩舞蹈不发生畸变”的问题上表现优异，虽然需要反复调整提示词，但其核心优势在于抽象的动画表现较好；Midjourney虽然可以生成简单的星云自转，但在处理复杂动作时容易崩坏，因此未用于主要动态场景。</p>
-                <p><strong>音频/音效：</strong>Vidu / Pixabay（构建氛围音效与背景音乐）。</p>
-                <p><strong>后期剪辑：</strong>剪映（最终画面合成、节奏卡点与色调统一）。</p>
+            <div class="section">
+                <div class="sec-head c-yellow">创作工具与幕后</div>
+                <p><strong>画面生成：</strong> Midjourney V7（核心概念与定调）、Nano Banana / 即梦（细节调整与一致性表达，如“玻璃手”形态统一）。</p>
+                <p><strong>动态生成：</strong> Vidu / 清影 / 即梦 / Midjourney（主要为图生视频）。</p>
+                <p><strong>难点攻克：</strong> Vidu在攻克“八音盒女孩舞蹈不发生畸变”的问题上表现优异，虽然需要反复调整提示词，但其核心优势在于抽象的动画表现较好；Midjourney虽然可以生成简单的星云自转，但在处理复杂动作时容易崩坏，因此未用于主要动态场景。</p>
+                <p><strong>音频/音效：</strong> Vidu / Pixabay（构建氛围音效与背景音乐）。</p>
+                <p><strong>后期剪辑：</strong> 剪映（最终画面合成、节奏卡点与色调统一）。</p>
             </div>
         </div>
 
         <!-- 英文 -->
         <div class="lang-en">
-            <div class="content-block">
-                <div class="block-title">Overview</div>
+            <div class="section">
+                <div class="sec-head c-black">Overview</div>
                 <p>“Break” means breaking through (bursting forth like the Big Bang), breaking the rules, and breaking down (shattering into pieces). So, ‘Break, then?’ —It is the end, yet seemingly also another beginning…</p>
                 <p>Life is inherently as magnificent and mysterious as the Big Bang. Yet, during the process of growing up, the unconstrained creativity of childhood is constantly pruned and disciplined, until we eventually become hollow creatures reduced to mere copy-pasting.</p>
                 <p>Perhaps the faint glimmer we hold in our hearts is no match for the overwhelming dogma, yet it remains the only possibility to break the cycle.</p>
             </div>
             
-            <div class="content-block b-blue">
-                <div class="block-title">Creative Inspiration</div>
+            <div class="section">
+                <div class="sec-head c-blue">Creative Inspiration</div>
                 <p>The inspiration and theme stem from the pain my friends have experienced due to being suffocated by their parents’ “invasive love,” and their lifelong struggle to escape it.</p>
             </div>
 
-            <div class="content-block b-red">
-                <div class="block-title">Visual & Audio Analysis</div>
+            <div class="section">
+                <div class="sec-head c-red">Visual & Audio Analysis</div>
                 <p>When addressing themes of time and the cosmos, I naturally gravitate towards using pulsating fluorescent particles. In my view, the origin of life, the Big Bang, and the process of gestation are interconnected and equally sacred. The opening visual sequence fuses the tail of a comet with the double helix structure of DNA. As the sperm and egg unite to form a zygote, the expansion and contraction of nebulae synchronize with a faint, steady heartbeat. As time passes, the sound design gradually shifts into the laughter of children. Visually, the zygote metaphor transforms into a clock face, which then evolves into a spinning Ferris wheel, while the heartbeat sound grows stronger and more grounded.</p>
                 <p>The child grows, learning to walk, and views the world with wondrous imagination. He fantasizes about plucking pink clouds from the sky to eat, imagining they would taste like cotton candy—a personal fantasy from my own childhood. This innocence nurtures his growth as he lies on the grass gazing at the stars or blowing bubbles of freedom. The bubble then magnifies into a pair of colorful glasses, through which he sees the hollowness and coldness of the adult world. This marks the last appearance of color in the piece. The heartbeat stops abruptly, symbolizing the imminent erasure of his true nature.</p>
                 <p>A shattered glass hand winds the pupil like a clockwork mechanism. This signifies the beginning of the subject’s invasion and forced discipline, coinciding with the preparation for the music box’s mechanical dance. The girl begins to dance. However, the moment she injects her own creativity or a “glitch” occurs (accompanied by a distorted modulation of the ‘Nutcracker’ background music), she is deemed wrong. Such deviations are forbidden and are instantly crushed and destroyed by the glass hand. Here, the girl’s color palette echoes and unifies with the pink cloud consumed earlier. The casing of the music box is designed to flutter like a curtain, yet it also resembles a pair of invisible hands enclosing the girl.</p>
                 <p>The final scene shifts to black and white, where ballerinas are mass-produced on a jarring conveyor belt amidst strobe effects. Deep within the chest, a faint pink fluorescent light persists. Perhaps this glimmer is futile, destined to be drowned by the surrounding monochrome; or perhaps, it is the only color that refuses to stop flashing within the void…</p>
             </div>
 
-            <div class="content-block">
-                <div class="block-title">Creation Tools</div>
-                <p><strong>Image Generation:</strong> Midjourney V7: Responsible for the visual presentation of core concepts and setting the overall style. Nano Banana / Dreamina: Responsible for detail adjustments and maintaining consistency. For instance, the consistency in the form of the “glass hand” across different shots was achieved using these tools.</p>
+            <div class="section">
+                <div class="sec-head c-yellow">Creation Tools</div>
+                <p><strong>Image Generation:</strong> Midjourney V7 (Core concepts & style), Nano Banana / Dreamina (Detail adjustments & consistency). For instance, the consistency in the form of the “glass hand” across different shots was achieved using these tools.</p>
                 <p><strong>Motion Generation:</strong> Vidu / Qingying / Dreamina / Midjourney: Primarily used for image-to-video generation.</p>
-                <p><strong>Tool Selection:</strong> Vidu excelled in resolving the issue of the “music box girl dancing without distortion,” although it required repeated prompt adjustments. Its core advantage lies in its superior handling of abstract animation. Midjourney, while capable of generating simple nebula rotations, was prone to breaking down (malforming) during complex movements, so it was not used for the main dynamic scenes.</p>
-                <p><strong>Audio:</strong> Vidu / Pixabay: Used to construct atmospheric sound effects and background music.</p>
+                <p><strong>Tool Selection & Overcoming Challenges:</strong> Vidu excelled in resolving the issue of the “music box girl dancing without distortion,” although it required repeated prompt adjustments. Its core advantage lies in its superior handling of abstract animation. Midjourney, while capable of generating simple nebula rotations, was prone to breaking down (malforming) during complex movements, so it was not used for the main dynamic scenes.</p>
+                <p><strong>Audio / Sound Effects:</strong> Vidu / Pixabay: Used to construct atmospheric sound effects and background music.</p>
                 <p><strong>Post-Production:</strong> CapCut: Responsible for final image synthesis, rhythm editing/beat matching, and color grading unification.</p>
             </div>
         </div>

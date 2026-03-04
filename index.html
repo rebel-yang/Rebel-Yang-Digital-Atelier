@@ -3,56 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REBEL YANG</title>
+    <title>Rebel Yang - Digital Atelier</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .profile-card {
-            display: grid; grid-template-columns: 300px 1fr;
+        .home-wrapper {
+            display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px;
             background: var(--c-white); border: var(--border);
-            box-shadow: 20px 20px 0 var(--c-black);
+            box-shadow: 20px 20px 0 var(--c-blue); /* 蓝色硬投影 */
+            position: relative; overflow: hidden;
         }
-        .avatar-area {
-            background: var(--c-yellow); border-right: var(--border);
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; padding: 40px;
+        .visual-area {
+            background: var(--c-black); display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 8rem; font-weight: 900;
+            position: relative;
         }
-        .pixel-avatar {
-            width: 150px; height: 150px; background: var(--c-black);
-            margin-bottom: 20px; color: var(--c-red);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Press Start 2P'; font-size: 3rem;
-            border: 4px solid white;
+        /* 装饰条 */
+        .visual-area::after {
+            content: ''; position: absolute; width: 100%; height: 20px;
+            background: var(--c-red); bottom: 20%; transform: rotate(-5deg) scale(1.2);
         }
-        .bio-area { padding: 40px; }
+        .content-area { padding: 50px; }
         
-        h2 { background: var(--c-black); color: white; display: inline-block; padding: 5px 10px; margin-bottom: 20px; font-family: 'Press Start 2P'; font-size: 1rem; }
-        p { margin-bottom: 15px; font-size: 1.1rem; text-align: justify; }
+        h2 { font-size: 1.8rem; margin: 30px 0 15px; border-left: 8px solid var(--c-yellow); padding-left: 15px; font-weight: 900; text-transform: uppercase; }
         
-        .honors-list { border: 2px dashed var(--c-black); padding: 20px; margin-top: 20px; background: #fafafa; }
-        .honors-list li { list-style: none; margin-bottom: 10px; padding-left: 20px; position: relative; }
-        .honors-list li::before { content: '►'; position: absolute; left: 0; color: var(--c-red); font-size: 0.8rem; top: 4px;}
-
-        .contact-bar {
-            margin-top: 30px; background: var(--c-blue); color: white;
-            padding: 15px; font-family: 'Press Start 2P'; font-size: 0.8rem;
-            border: var(--border); box-shadow: 5px 5px 0 var(--c-black);
+        .contact-card {
+            margin-top: 40px; padding: 20px;
+            background: var(--c-black); color: var(--c-white);
+            border: 4px solid var(--c-red);
+            font-weight: bold; font-size: 1.1rem;
+            display: inline-block;
+            transform: skewX(-10deg);
         }
+        .contact-card span { display: block; transform: skewX(10deg); }
 
-        /* 装饰几何 */
-        .s1 { width: 100px; height: 100px; background: var(--c-red); top: 10%; right: 10%; border-radius: 50%; }
-        .s2 { width: 300px; height: 40px; background: var(--c-black); bottom: 10%; left: 5%; transform: rotate(-10deg); }
-
-        @media(max-width:768px) { .profile-card { grid-template-columns: 1fr; } .avatar-area { border-right: none; border-bottom: var(--border); } }
+        @media(max-width:768px) { .home-wrapper { grid-template-columns: 1fr; } .visual-area { height: 250px; } }
     </style>
 </head>
 <body>
-    <div class="race-bg"></div>
-    <div class="geo-layer">
-        <div class="shape s1"></div>
-        <div class="shape s2"></div>
-    </div>
-
-    <button id="langToggle" class="lang-switch">CN/EN</button>
+    <button id="langToggle" class="btn-retro lang-switch">CN / EN</button>
 
     <nav class="side-nav">
         <a href="index.html" class="nav-item active" data-page="home">HOME</a>
@@ -61,42 +49,35 @@
     </nav>
 
     <div class="container">
-        <h1 class="site-title">REBEL YANG'S<br>DIGITAL ATELIER</h1>
+        <h1 class="site-title">REBEL YANG'S ATELIER</h1>
         
-        <div class="profile-card">
-            <div class="avatar-area">
-                <div class="pixel-avatar">RY</div>
-                <div style="font-family:'Press Start 2P'; font-size:0.8rem;">PLAYER 1</div>
-            </div>
-            <div class="bio-area">
+        <div class="home-wrapper">
+            <div class="visual-area">RY.</div>
+            <div class="content-area">
                 <div class="lang-cn">
-                    <h2>个人简介</h2>
-                    <p>我是一名AI创作者，兼具计算机本科背景与产品经理经验，曾修习油画美学。</p>
+                    <p style="font-size:1.2rem; font-weight:bold;">我是一名AI创作者，兼具计算机本科背景与产品经理经验，曾修习油画美学。</p>
                     <p>我的创作始终致力于理性逻辑与感性表达的深度融合。作品风格游走于“破坏性极简”与“秩序性繁复”之间，在冲突与重构中寻找视觉平衡。</p>
                     
-                    <div class="honors-list">
-                        <h3>荣誉 / HONORS</h3>
-                        <ul>
-                            <li>2025第四届CDSA国际媒体艺术创意大赛 提名</li>
-                            <li>IP Shanghai 2025 AI未来看见上海 入围奖</li>
-                        </ul>
-                    </div>
-                    <div class="contact-bar">邮箱：siyi.rebel@gmail.com</div>
+                    <h2>荣誉</h2>
+                    <ul style="list-style: square; padding-left: 20px; line-height: 2;">
+                        <li>2025第四届CDSA国际媒体艺术创意大赛 <strong style="background:var(--c-yellow);">提名</strong></li>
+                        <li>IP Shanghai 2025 AI未来看见上海 <strong style="background:var(--c-yellow);">入围奖</strong></li>
+                    </ul>
+                    
+                    <div class="contact-card"><span>邮箱：siyi.rebel@gmail.com</span></div>
                 </div>
 
                 <div class="lang-en">
-                    <h2>BIO</h2>
-                    <p>I am an AI creator with a Bachelor’s degree in Computer Science and a background in Product Management, complemented by studies in oil painting aesthetics.</p>
+                    <p style="font-size:1.2rem; font-weight:bold;">I am an AI creator with a Bachelor’s degree in Computer Science and a background in Product Management, complemented by studies in oil painting aesthetics.</p>
                     <p>My work consistently explores the fusion of rational logic and emotional expression. My style navigates the tension between “Destructive Minimalism” and “Ordered Complexity”, seeking visual balance through conflict and reconstruction.</p>
                     
-                    <div class="honors-list">
-                        <h3>HONORS</h3>
-                        <ul>
-                            <li>Nominee, 2025 4th CDSA International Media Art Creative Competition</li>
-                            <li>Finalist, IP Shanghai 2025 “AI Future: Seeing Shanghai”</li>
-                        </ul>
-                    </div>
-                    <div class="contact-bar">Email: siyi.rebel@gmail.com</div>
+                    <h2>Honors</h2>
+                    <ul style="list-style: square; padding-left: 20px; line-height: 2;">
+                        <li>Nominee, 2025 4th CDSA International Media Art Creative Competition</li>
+                        <li>Finalist, IP Shanghai 2025 “AI Future: Seeing Shanghai”</li>
+                    </ul>
+                    
+                    <div class="contact-card"><span>Email: siyi.rebel@gmail.com</span></div>
                 </div>
             </div>
         </div>

@@ -6,44 +6,40 @@
     <title>Works - Rebel Yang</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px; }
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 60px; }
         
         .work-card {
-            border: var(--border); background: var(--c-white);
+            border: var(--border); background: white;
+            transition: all 0.2s cubic-bezier(0.1, 0.7, 1.0, 0.1);
             position: relative; display: block;
-            transition: 0.2s;
+            box-shadow: 10px 10px 0 var(--c-black);
         }
-        /* 悬停效果：像按下按钮 */
+        
         .work-card:hover {
-            transform: translate(-10px, -10px);
-            box-shadow: 15px 15px 0 var(--c-red);
+            transform: translate(-5px, -5px);
+            box-shadow: 15px 15px 0 var(--c-red); /* 悬停变红影 */
+        }
+        .work-card:active {
+            transform: translate(5px, 5px);
+            box-shadow: 2px 2px 0 var(--c-black);
         }
 
         .thumb {
-            height: 220px; background: #000;
-            border-bottom: var(--border); overflow: hidden;
-            position: relative;
+            height: 220px; background: #000; border-bottom: var(--border);
+            overflow: hidden; position: relative;
         }
-        .thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
-        .work-card:hover .thumb img { opacity: 1; transform: scale(1.1); }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(100%); }
+        .work-card:hover .thumb img { filter: grayscale(0%); transform: scale(1.1); }
 
-        .info { padding: 20px; border-top: 4px solid var(--c-yellow); }
-        .work-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 10px; font-family: 'Press Start 2P'; line-height: 1.4; }
-        
-        .tags { display: flex; gap: 10px; margin-bottom: 15px; }
-        .tag { background: var(--c-black); color: var(--c-yellow); padding: 5px 10px; font-size: 10px; font-family: 'Press Start 2P'; }
-        
-        .desc { font-size: 0.9rem; color: #555; height: 3em; overflow: hidden; }
-
-        .s3 { width: 200px; height: 200px; border: 10px solid var(--c-blue); right: -50px; top: 50px; transform: rotate(45deg); }
+        .info { padding: 30px; }
+        .w-title { font-size: 1.8rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
+        .tags { margin-bottom: 15px; }
+        .tag { background: var(--c-yellow); border: 2px solid black; padding: 4px 8px; font-weight: bold; font-size: 0.8rem; margin-right: 5px; }
+        .desc { color: #666; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <div class="race-bg"></div>
-    <div class="geo-layer"><div class="shape s3"></div></div>
-
-    <button id="langToggle" class="lang-switch">CN/EN</button>
-
+    <button id="langToggle" class="btn-retro lang-switch">CN / EN</button>
     <nav class="side-nav">
         <a href="../index.html" class="nav-item" data-page="home">HOME</a>
         <a href="index.html" class="nav-item active" data-page="works">WORKS</a>
@@ -51,35 +47,35 @@
     </nav>
 
     <div class="container">
-        <h1 class="site-title">SELECT WORKS</h1>
+        <h1 class="site-title">WORKS</h1>
         
         <div class="works-grid">
-            <!-- 作品 1 -->
+            <!-- 作品1 -->
             <a href="break-then.html" class="work-card">
                 <div class="thumb">
-                    <img src="../assets/break-thumb.jpg" alt="Break Then" onerror="this.src='https://via.placeholder.com/600x400/000/FFF?text=BREAK'">
+                    <img src="../assets/break-thumb.jpg" alt="Break Then" onerror="this.src='https://via.placeholder.com/600x400/000/fff?text=BREAK'">
                 </div>
                 <div class="info">
-                    <div class="work-title">Break, then…</div>
-                    <div class="tags"><span class="tag">2025</span><span class="tag">AI VIDEO</span></div>
+                    <div class="w-title">Break, then…</div>
+                    <div class="tags"><span class="tag">2025</span><span class="tag" style="background:var(--c-blue); color:white;">AI Video</span></div>
                     <div class="desc">
-                        <span class="lang-cn">生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意...</span>
+                        <span class="lang-cn">生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意在成长过程中被不断修剪...</span>
                         <span class="lang-en">Life is inherently as magnificent and mysterious as the Big Bang...</span>
                     </div>
                 </div>
             </a>
 
-            <!-- 作品 2 -->
+            <!-- 作品2 -->
             <a href="sands-of-illusion.html" class="work-card">
                 <div class="thumb">
                     <img src="../assets/sands-thumb.jpg" alt="Sands" onerror="this.src='https://via.placeholder.com/600x400/FD0/000?text=SANDS'">
                 </div>
                 <div class="info">
-                    <div class="work-title">Sands of Illusion</div>
-                    <div class="tags"><span class="tag">2025</span><span class="tag">AI VIDEO</span></div>
+                    <div class="w-title">Sands of Illusion</div>
+                    <div class="tags"><span class="tag">2025</span><span class="tag" style="background:var(--c-blue); color:white;">AI Video</span></div>
                     <div class="desc">
-                        <span class="lang-cn">一支商队在丝路迷宫中的轮回之旅...</span>
-                        <span class="lang-en">A merchant caravan’s cyclical journey...</span>
+                        <span class="lang-cn">一支商队在丝路迷宫中的轮回之旅，于几何幻境中叩问文明相遇的永恒真相。</span>
+                        <span class="lang-en">A merchant caravan’s cyclical journey through a Silk Road labyrinth...</span>
                     </div>
                 </div>
             </a>

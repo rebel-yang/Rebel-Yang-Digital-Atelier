@@ -6,146 +6,132 @@
     <title>Thoughts - Rebel Yang</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .table-wrapper {
-            background: white; border: var(--border); box-shadow: 15px 15px 0 var(--c-yellow);
-            overflow-x: auto;
+        .table-container { 
+            width: 100%; overflow-x: auto; 
+            background: white; border: var(--border);
+            box-shadow: 20px 20px 0 var(--c-yellow); 
+            margin-bottom: 50px;
         }
-        table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        
         th { 
-            background: var(--c-black); color: var(--c-yellow); padding: 20px; text-align: left;
-            font-family: 'Press Start 2P'; font-size: 12px; line-height: 1.5; border-bottom: var(--border);
+            background: var(--c-black); color: var(--c-white); 
+            padding: 20px; text-align: left; font-weight: 900; 
+            text-transform: uppercase; border-bottom: var(--border);
         }
-        td { padding: 25px; border-bottom: 1px solid #ccc; border-right: 2px dashed #ccc; vertical-align: top; }
         
+        td { 
+            padding: 25px; border-bottom: 2px solid #eee; vertical-align: top; 
+            font-size: 0.95rem; line-height: 1.6;
+        }
+        tr:last-child td { border-bottom: none; }
+        
+        /* 第一列高亮 */
         td:first-child { 
-            font-weight: 900; background: #f0f0f0; border-right: var(--border); 
-            color: var(--c-red); width: 25%; font-size: 1.1rem;
+            background: #fff; font-weight: 900; 
+            border-right: 4px solid var(--c-black); 
+            color: var(--c-red); width: 18%; font-size: 1.1rem;
         }
-        
-        .phase-label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--c-blue); text-transform: uppercase; }
-        .list-dot { display: block; margin-bottom: 5px; padding-left: 15px; position: relative; }
-        .list-dot::before { content: '■'; font-size: 10px; color: var(--c-yellow); position: absolute; left: 0; top: 5px; }
 
-        /* 特殊处理表格显隐 */
-        .tbody-en { display: none; }
-        body.en-mode .tbody-cn { display: none; }
-        body.en-mode .tbody-en { display: table-row-group; }
+        .phase-label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--c-blue); margin-top: 10px; }
     </style>
 </head>
 <body>
-    <div class="race-bg"></div>
-    <div class="geo-layer"><div class="shape s-blue" style="width:200px; height:200px; border-radius:50%; bottom:-50px; right:-50px;"></div></div>
-
-    <button id="langToggle" class="lang-switch">CN/EN</button>
-
+    <button id="langToggle" class="btn-retro lang-switch">CN / EN</button>
     <nav class="side-nav">
         <a href="../index.html" class="nav-item" data-page="home">HOME</a>
         <a href="../works/index.html" class="nav-item" data-page="works">WORKS</a>
         <a href="index.html" class="nav-item active" data-page="thoughts">THOUGHTS</a>
     </nav>
 
-    <div class="container">
+    <div class="container fade-in-up">
         <h1 class="site-title">THOUGHTS</h1>
         
-        <div class="table-wrapper">
+        <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Phase<br>阶段</th>
-                        <th>Core Question<br>核心问题</th>
-                        <th>Key Actions<br>关键行动</th>
-                        <th>Output<br>产出</th>
+                        <th>Phase</th>
+                        <th>Question</th>
+                        <th>Actions</th>
+                        <th>Output</th>
                     </tr>
                 </thead>
-                <!-- 中文表体 -->
-                <tbody class="tbody-cn">
+                <!-- CN -->
+                <tbody class="lang-cn">
                     <tr>
-                        <td>第一阶段：主题定义与规划 (立项)</td>
+                        <td>第一阶段：<br>主题定义与规划</td>
                         <td>我要做个关于“什么”的作品？</td>
                         <td>
-                            <span class="phase-label">需求分析</span> 明确创作的核心概念、情绪或想讲述的故事。<br><br>
+                            <span class="phase-label">需求分析</span> 明确创作的核心概念、情绪或想讲述的故事。<br>
                             <span class="phase-label">市场定位</span> 思考作品的受众与想达成的体验。
                         </td>
                         <td>1. 核心主题</td>
                     </tr>
                     <tr>
-                        <td>第二阶段：生成前规划 (产品设计)</td>
+                        <td>第二阶段：<br>生成前规划</td>
                         <td>它应该“长什么样”、“感觉如何”？</td>
                         <td>
-                            <span class="phase-label">风格定义</span> 结合你的偏好（极简/极繁），确定视觉风格与主色调。<br><br>
+                            <span class="phase-label">风格定义</span> 结合偏好（极简/极繁），确定视觉风格与主色调。<br>
                             <span class="phase-label">结构化拆解</span> 将主题拆解为连贯的“分镜头”或“视觉序列”。
                         </td>
-                        <td>
-                            <span class="list-dot">2. 视觉风格指南</span>
-                            <span class="list-dot">3. 主Prompt（定调）</span>
-                            <span class="list-dot">4. 分镜头Prompt列表</span>
-                        </td>
+                        <td>2. 视觉风格指南<br>3. 主Prompt（定调）<br>4. 分镜头脚本</td>
                     </tr>
                     <tr>
-                        <td>第三阶段：生成与粗剪 (开发与测试)</td>
+                        <td>第三阶段：<br>生成与粗剪</td>
                         <td>如何高效产出并组装素材？</td>
                         <td>
-                            <span class="phase-label">敏捷开发</span> 批量生成备选镜头，快速验证效果。<br><br>
+                            <span class="phase-label">敏捷开发</span> 批量生成备选镜头，快速验证效果。<br>
                             <span class="phase-label">MVP构建</span> 筛选最佳素材，拼接出故事主线草稿。
                         </td>
-                        <td>
-                            <span class="list-dot">5. 原始视频素材库</span>
-                            <span class="list-dot">6. 粗剪版本（视频草稿）</span>
-                        </td>
+                        <td>5. 原始视频素材库<br>6. 粗剪版本</td>
                     </tr>
                     <tr>
-                        <td>第四阶段：后期与定稿 (打磨上线)</td>
+                        <td>第四阶段：<br>后期与定稿</td>
                         <td>如何提升至发布品质？</td>
                         <td>
-                            <span class="phase-label">核心优化</span> 精剪节奏、统一色调、添加动效/粒子。<br><br>
+                            <span class="phase-label">核心优化</span> 精剪节奏、统一色调、添加动效/粒子。<br>
                             <span class="phase-label">集成发布</span> 根据“先听后感”原则，完成音效设计、混音，最终渲染。
                         </td>
                         <td>7. 成片</td>
                     </tr>
                 </tbody>
 
-                <!-- 英文表体 -->
-                <tbody class="tbody-en">
+                <!-- EN -->
+                <tbody class="lang-en">
                     <tr>
-                        <td>Phase 1: Theme Definition & Planning</td>
+                        <td>Phase 1: <br>Theme Definition</td>
                         <td>What is my work “about”?</td>
                         <td>
-                            <span class="phase-label">Requirement Analysis</span> Define the core concept, emotion, or story.<br><br>
+                            <span class="phase-label">Requirement Analysis</span> Define the core concept, emotion, or story.<br>
                             <span class="phase-label">Market Positioning</span> Consider the target audience and desired experience.
                         </td>
                         <td>1. Core Theme</td>
                     </tr>
                     <tr>
-                        <td>Phase 2: Pre-generation Planning</td>
-                        <td>What should it “look like” and “feel like”?</td>
+                        <td>Phase 2: <br>Pre-generation</td>
+                        <td>What should it “look like”?</td>
                         <td>
-                            <span class="phase-label">Style Definition</span> Determine visual style & primary color palette.<br><br>
+                            <span class="phase-label">Style Definition</span> Determine visual style & primary color palette.<br>
                             <span class="phase-label">Structural Decomposition</span> Break down the theme into a coherent sequence.
                         </td>
-                        <td>
-                            <span class="list-dot">2. Visual Style Guide</span>
-                            <span class="list-dot">3. Master Prompt</span>
-                            <span class="list-dot">4. Shot List Prompts</span>
-                        </td>
+                        <td>2. Style Guide<br>3. Master Prompt<br>4. Shot List</td>
                     </tr>
                     <tr>
-                        <td>Phase 3: Generation & Rough Cut</td>
-                        <td>How to produce and assemble footage efficiently?</td>
+                        <td>Phase 3: <br>Generation</td>
+                        <td>How to produce efficiently?</td>
                         <td>
-                            <span class="phase-label">Agile Development</span> Batch generate candidate shots.<br><br>
+                            <span class="phase-label">Agile Development</span> Batch generate candidate shots.<br>
                             <span class="phase-label">MVP Build</span> Assemble a draft narrative.
                         </td>
-                        <td>
-                            <span class="list-dot">5. Raw Video Asset Library</span>
-                            <span class="list-dot">6. Rough Cut</span>
-                        </td>
+                        <td>5. Raw Video Assets<br>6. Rough Cut</td>
                     </tr>
                     <tr>
-                        <td>Phase 4: Post-production & Finalization</td>
-                        <td>How to refine it to publishable quality?</td>
+                        <td>Phase 4: <br>Finalization</td>
+                        <td>How to refine?</td>
                         <td>
-                            <span class="phase-label">Core Optimization</span> Fine-cut pacing, color grade, effects.<br><br>
-                            <span class="phase-label">Integration & Launch</span> Sound design & mixing, final render.
+                            <span class="phase-label">Core Optimization</span> Pacing, color grade, effects.<br>
+                            <span class="phase-label">Integration</span> Sound design & mixing, final render.
                         </td>
                         <td>7. Final Video</td>
                     </tr>
