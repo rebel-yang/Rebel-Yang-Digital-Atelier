@@ -1,129 +1,164 @@
 /* =========================================
-   STYLE: Malevich Suprematism + Mondrian
+   THEME: RACING GAME + MALEVICH (HARDCORE)
    ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
-    --c-red: #FF2E00;       /* 更鲜艳的红 */
-    --c-yellow: #FFD200;    /* 更纯粹的黄 */
-    --c-blue: #0044CC;      /* 更深邃的蓝 */
-    --c-black: #050505;     /* 接近纯黑 */
-    --c-white: #FAFAFA;     /* 艺术纸白 */
-    --c-gray: #888;
-    --nav-width: 80px;
-    --border: 3px solid var(--c-black);
-    --shadow: 8px 8px 0 rgba(0,0,0,1); /* 硬投影 */
-    --shadow-hover: 12px 12px 0 var(--c-blue); /* 悬停投影 */
-    --ease: cubic-bezier(0.25, 1, 0.5, 1);
+    /* 赛车游戏高对比配色 */
+    --c-red: #FF003C;       /* 故障红 */
+    --c-yellow: #FAFF00;    /* 警示黄 */
+    --c-blue: #00E1FF;      /* 赛博蓝 */
+    --c-black: #000000;     /* 纯黑 */
+    --c-white: #FFFFFF;
+    --c-gray: #B0B0B0;
+    
+    --nav-width: 90px;
+    --border: 4px solid var(--c-black);
+    --shadow: 8px 8px 0px var(--c-black);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
-    background-color: var(--c-white);
+    background-color: var(--c-gray);
     color: var(--c-black);
-    min-height: 100vh;
-    font-size: 16px;
-    line-height: 1.7;
+    width: 100vw; min-height: 100vh;
     overflow-x: hidden;
+    /* 默认字体：中文粗黑体 */
+    font-family: "SimHei", "Heiti SC", "Microsoft YaHei", sans-serif;
+    font-weight: 900; 
+    font-size: 16px;
+    line-height: 1.6;
 }
 
-a { text-decoration: none; color: inherit; transition: color 0.3s; }
+/* 英文强制像素风 */
+.en-font, .nav-item, h1, .tag, .pixel-text {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
 
-/* --- 1. 动态艺术背景 --- */
-.bg-art {
+a { text-decoration: none; color: inherit; cursor: pointer; }
+
+/* --- 1. 动态赛车棋盘格背景 --- */
+.race-bg {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -2; pointer-events: none; overflow: hidden;
+    z-index: -2; pointer-events: none;
+    background-color: #f0f0f0;
+    background-image:
+        linear-gradient(45deg, #ddd 25%, transparent 25%),
+        linear-gradient(-45deg, #ddd 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ddd 75%),
+        linear-gradient(-45deg, transparent 75%, #ddd 75%);
+    background-size: 40px 40px;
+    /* 动起来！ */
+    animation: scrollBg 2s linear infinite;
 }
 
-/* 噪点纹理 (增加质感) */
-.noise-overlay {
+@keyframes scrollBg {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
+}
+
+/* --- 2. 漂浮的马列维奇几何体 (装饰) --- */
+.geo-layer {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; pointer-events: none; opacity: 0.05;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    z-index: -1; pointer-events: none;
 }
-
-/* 漂浮几何体动画 */
-.float-shape {
-    position: absolute;
-    mix-blend-mode: multiply; /* 正片叠底，产生色彩叠加效果 */
-    opacity: 0.8;
-    animation: floatAnim 10s infinite ease-in-out alternate;
+.shape {
+    position: absolute; border: var(--border);
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.2);
 }
 .s-red { background: var(--c-red); }
 .s-yellow { background: var(--c-yellow); }
 .s-blue { background: var(--c-blue); }
 .s-black { background: var(--c-black); }
 
-@keyframes floatAnim {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    100% { transform: translate(30px, -30px) rotate(5deg); }
-}
-
-/* --- 2. 导航栏 --- */
+/* --- 3. 游戏感导航栏 --- */
 .side-nav {
-    position: fixed; right: 0; top: 20%;
-    display: flex; flex-direction: column; z-index: 1000;
+    position: fixed; right: 0; top: 15%;
+    display: flex; flex-direction: column; gap: 15px;
+    z-index: 1000; padding-right: 10px;
 }
+
 .nav-item {
-    width: var(--nav-width); height: 140px;
-    background: var(--c-white); border: var(--border); border-right: none;
-    margin-bottom: -3px;
+    width: var(--nav-width); height: 120px;
+    background: var(--c-white);
+    border: var(--border);
     display: flex; align-items: center; justify-content: center;
-    writing-mode: vertical-rl; text-orientation: mixed;
-    font-weight: 900; letter-spacing: 2px; cursor: pointer;
-    transition: all 0.4s var(--ease);
+    writing-mode: vertical-rl; text-orientation: sideways;
+    font-size: 12px;
+    transition: 0.1s;
+    box-shadow: -5px 5px 0 var(--c-black);
 }
-.nav-item:hover { width: 100px; background: var(--c-black); color: white; }
-.nav-item.active { background: var(--c-black); color: white; width: 90px; }
 
-/* 特殊高亮色 */
-.nav-item[data-page="home"].active { background: var(--c-red); }
-.nav-item[data-page="works"].active { background: var(--c-blue); }
-.nav-item[data-page="thoughts"].active { background: var(--c-yellow); color: black; }
+.nav-item:hover {
+    transform: translate(-5px, 0);
+    background: var(--c-yellow);
+    box-shadow: -10px 10px 0 var(--c-red);
+}
 
-/* --- 3. 布局与动效 --- */
+.nav-item.active {
+    background: var(--c-red); color: white;
+    transform: translate(-10px, 0);
+    box-shadow: -5px 5px 0 var(--c-black);
+}
+
+/* --- 4. 容器与卡片风格 --- */
 .container {
     max-width: 1100px; margin: 0 auto;
-    padding: 80px 120px 100px 60px;
+    padding: 60px 120px 100px 40px;
+    position: relative;
 }
 
-/* 入场动画 */
-.fade-in-up {
-    animation: fadeInUp 0.8s var(--ease) forwards;
-    opacity: 0; transform: translateY(30px);
-}
-@keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
+.game-card {
+    background: var(--c-white);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    padding: 0;
+    transition: 0.2s;
+    position: relative;
 }
 
 /* 标题样式 */
-h1.page-title {
-    font-size: 3.5rem; font-weight: 900; text-transform: uppercase;
-    display: inline-block; background: var(--c-black); color: var(--c-white);
-    padding: 10px 30px; margin-bottom: 60px;
+h1.site-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem; line-height: 1.5;
+    background: var(--c-black); color: var(--c-white);
+    display: inline-block; padding: 20px;
+    border: 4px solid var(--c-white);
     box-shadow: 10px 10px 0 var(--c-red);
+    margin-bottom: 50px;
+    transform: skewX(-5deg);
 }
 
-/* 语言切换 */
-.lang-btn {
-    position: fixed; top: 30px; right: 100px; z-index: 1000;
-    background: var(--c-white); border: 2px solid var(--c-black);
-    padding: 8px 20px; font-weight: bold; cursor: pointer;
-    transition: 0.3s; box-shadow: 4px 4px 0 var(--c-black);
+/* 语言切换按钮 (像游戏手柄按键) */
+.lang-switch {
+    position: fixed; top: 30px; right: 120px; z-index: 1000;
+    background: var(--c-black); color: var(--c-yellow);
+    border: 4px solid var(--c-white);
+    font-family: 'Press Start 2P'; font-size: 10px;
+    padding: 10px 15px; cursor: pointer;
+    box-shadow: 5px 5px 0 var(--c-black);
 }
-.lang-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--c-red); }
+.lang-switch:active { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--c-black); }
 
-/* 语言显示逻辑 */
+/* 语言逻辑 */
 .lang-en { display: none; }
 body.en-mode .lang-cn { display: none; }
 body.en-mode .lang-en { display: block; }
 
 /* 响应式 */
 @media (max-width: 768px) {
-    .side-nav { top: auto; bottom: 0; flex-direction: row; width: 100%; height: 60px; }
-    .nav-item { width: 33.33%; height: 100%; writing-mode: horizontal-tb; border-bottom: none; border-right: var(--border); }
-    .nav-item:hover, .nav-item.active { width: 33.33%; height: 100%; }
-    .container { padding: 80px 20px; }
-    h1.page-title { font-size: 2rem; }
-    .lang-btn { top: 20px; right: 20px; }
+    .side-nav { 
+        top: auto; bottom: 0; right: 0; left: 0; 
+        flex-direction: row; width: 100%; height: 70px; gap:0; padding:0;
+    }
+    .nav-item { 
+        width: 33.33%; height: 100%; writing-mode: horizontal-tb; 
+        border: none; border-top: var(--border); border-right: var(--border);
+        box-shadow: none;
+    }
+    .container { padding: 40px 20px 100px 20px; }
+    h1.site-title { font-size: 1.2rem; }
 }
