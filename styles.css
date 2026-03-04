@@ -1,79 +1,129 @@
 /* =========================================
-   CORE STYLE: Malevich + Mondrian
+   STYLE: Malevich Suprematism + Mondrian
    ========================================= */
 :root {
-    --c-red: #E33827; 
-    --c-yellow: #F1C32D; 
-    --c-blue: #1D5BB6; 
-    --c-black: #111111; 
-    --c-white: #F4F4F4; 
-    --c-gray: #888888;
-    --nav-width: 70px;
-    --border-thick: 4px solid var(--c-black);
+    --c-red: #FF2E00;       /* 更鲜艳的红 */
+    --c-yellow: #FFD200;    /* 更纯粹的黄 */
+    --c-blue: #0044CC;      /* 更深邃的蓝 */
+    --c-black: #050505;     /* 接近纯黑 */
+    --c-white: #FAFAFA;     /* 艺术纸白 */
+    --c-gray: #888;
+    --nav-width: 80px;
+    --border: 3px solid var(--c-black);
+    --shadow: 8px 8px 0 rgba(0,0,0,1); /* 硬投影 */
+    --shadow-hover: 12px 12px 0 var(--c-blue); /* 悬停投影 */
+    --ease: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: "PingFang SC", "Microsoft YaHei", "SimHei", sans-serif;
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
     background-color: var(--c-white);
     color: var(--c-black);
-    width: 100vw; min-height: 100vh;
-    font-size: 16px; line-height: 1.6;
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
-a { text-decoration: none; color: inherit; transition: 0.3s; }
+a { text-decoration: none; color: inherit; transition: color 0.3s; }
 
-/* 几何背景 */
-.bg-layer {
+/* --- 1. 动态艺术背景 --- */
+.bg-art {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; pointer-events: none;
-    background-image: radial-gradient(#ddd 1px, transparent 1px);
-    background-size: 20px 20px;
+    z-index: -2; pointer-events: none; overflow: hidden;
 }
-.shape { position: absolute; opacity: 0.9; mix-blend-mode: multiply; transition: transform 0.5s ease; }
 
-/* 导航栏 */
+/* 噪点纹理 (增加质感) */
+.noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; pointer-events: none; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 漂浮几何体动画 */
+.float-shape {
+    position: absolute;
+    mix-blend-mode: multiply; /* 正片叠底，产生色彩叠加效果 */
+    opacity: 0.8;
+    animation: floatAnim 10s infinite ease-in-out alternate;
+}
+.s-red { background: var(--c-red); }
+.s-yellow { background: var(--c-yellow); }
+.s-blue { background: var(--c-blue); }
+.s-black { background: var(--c-black); }
+
+@keyframes floatAnim {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(30px, -30px) rotate(5deg); }
+}
+
+/* --- 2. 导航栏 --- */
 .side-nav {
     position: fixed; right: 0; top: 20%;
     display: flex; flex-direction: column; z-index: 1000;
 }
 .nav-item {
-    width: var(--nav-width); height: 160px;
-    background: var(--c-white); border: var(--border-thick); border-right: none;
-    margin-bottom: -4px;
+    width: var(--nav-width); height: 140px;
+    background: var(--c-white); border: var(--border); border-right: none;
+    margin-bottom: -3px;
     display: flex; align-items: center; justify-content: center;
     writing-mode: vertical-rl; text-orientation: mixed;
     font-weight: 900; letter-spacing: 2px; cursor: pointer;
-    position: relative; transition: all 0.3s ease;
+    transition: all 0.4s var(--ease);
 }
-.nav-item:hover { transform: translateX(-10px); }
-.nav-item.active { color: white; }
+.nav-item:hover { width: 100px; background: var(--c-black); color: white; }
+.nav-item.active { background: var(--c-black); color: white; width: 90px; }
+
+/* 特殊高亮色 */
 .nav-item[data-page="home"].active { background: var(--c-red); }
 .nav-item[data-page="works"].active { background: var(--c-blue); }
 .nav-item[data-page="thoughts"].active { background: var(--c-yellow); color: black; }
 
-/* 通用布局 */
-.container { max-width: 1200px; margin: 0 auto; padding: 60px 100px 100px 60px; }
-h1.site-title {
-    font-size: 3rem; font-weight: 900; text-transform: uppercase;
-    margin-bottom: 60px; border-bottom: var(--border-thick); padding-bottom: 20px;
-    display: inline-block; background: var(--c-black); color: var(--c-white); padding: 15px 30px;
+/* --- 3. 布局与动效 --- */
+.container {
+    max-width: 1100px; margin: 0 auto;
+    padding: 80px 120px 100px 60px;
 }
-.lang-switch {
+
+/* 入场动画 */
+.fade-in-up {
+    animation: fadeInUp 0.8s var(--ease) forwards;
+    opacity: 0; transform: translateY(30px);
+}
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 标题样式 */
+h1.page-title {
+    font-size: 3.5rem; font-weight: 900; text-transform: uppercase;
+    display: inline-block; background: var(--c-black); color: var(--c-white);
+    padding: 10px 30px; margin-bottom: 60px;
+    box-shadow: 10px 10px 0 var(--c-red);
+}
+
+/* 语言切换 */
+.lang-btn {
     position: fixed; top: 30px; right: 100px; z-index: 1000;
-    background: var(--c-black); color: var(--c-white);
-    padding: 8px 16px; border: none; cursor: pointer; font-weight: bold;
+    background: var(--c-white); border: 2px solid var(--c-black);
+    padding: 8px 20px; font-weight: bold; cursor: pointer;
+    transition: 0.3s; box-shadow: 4px 4px 0 var(--c-black);
 }
+.lang-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--c-red); }
+
+/* 语言显示逻辑 */
 .lang-en { display: none; }
 body.en-mode .lang-cn { display: none; }
 body.en-mode .lang-en { display: block; }
 
 /* 响应式 */
 @media (max-width: 768px) {
-    .side-nav { top: auto; bottom: 0; right: 0; left: 0; flex-direction: row; width: 100%; height: 60px; }
-    .nav-item { width: 33.33%; height: 100%; writing-mode: horizontal-tb; border-right: var(--border-thick); border-bottom: none; margin-bottom: 0; }
-    .container { padding: 40px 20px 100px 20px; }
-    h1.site-title { font-size: 1.5rem; }
-    .lang-switch { top: 20px; right: 20px; }
+    .side-nav { top: auto; bottom: 0; flex-direction: row; width: 100%; height: 60px; }
+    .nav-item { width: 33.33%; height: 100%; writing-mode: horizontal-tb; border-bottom: none; border-right: var(--border); }
+    .nav-item:hover, .nav-item.active { width: 33.33%; height: 100%; }
+    .container { padding: 80px 20px; }
+    h1.page-title { font-size: 2rem; }
+    .lang-btn { top: 20px; right: 20px; }
 }

@@ -3,72 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebel Yang's Digital Atelier</title>
-    <!-- 关键：引用同级目录的 CSS -->
+    <title>Rebel Yang - Digital Atelier</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .bio-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
-        .bio-visual { background: var(--c-black); height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 8rem; font-weight: 900; }
-        .bio-text { padding: 40px; background: white; border: var(--border-thick); box-shadow: 15px 15px 0 var(--c-yellow); }
-        .honors-box { margin-top: 30px; border-top: 2px dashed #ccc; padding-top: 20px; }
-        .contact-tag { display: inline-block; margin-top: 20px; background: var(--c-black); color: white; padding: 10px 20px; font-weight: bold; }
-        .shape-1 { width: 150px; height: 150px; background: var(--c-red); border-radius: 50%; top: 10%; left: 5%; }
-        .shape-2 { width: 400px; height: 50px; background: var(--c-blue); bottom: 10%; right: 20%; transform: rotate(-10deg); }
-        @media(max-width:768px) { .bio-layout { grid-template-columns: 1fr; } .bio-visual { min-height: 200px; font-size: 5rem; } }
+        .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; min-height: 80vh; }
+        .visual-block {
+            height: 500px; background: var(--c-black);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 6rem; font-weight: 900;
+            position: relative; border: var(--border);
+            box-shadow: 20px 20px 0 var(--c-yellow);
+        }
+        .text-block { background: white; padding: 40px; border: var(--border); position: relative; }
+        .text-block::before {
+            content: ''; position: absolute; top: -10px; left: -10px; 
+            width: 100%; height: 100%; border: 2px solid var(--c-red); z-index: -1;
+        }
+        h2 { font-size: 1.5rem; border-left: 6px solid var(--c-red); padding-left: 15px; margin: 30px 0 15px; }
+        li { margin-bottom: 8px; }
+        .contact-box {
+            margin-top: 30px; padding: 15px; background: var(--c-black); color: white;
+            font-weight: bold; display: inline-block;
+        }
+        
+        /* 背景装饰 */
+        .circle { width: 200px; height: 200px; border-radius: 50%; top: 10%; left: 5%; }
+        .rect { width: 300px; height: 50px; bottom: 15%; right: 20%; transform: rotate(-15deg); }
+        .cross { 
+            width: 100px; height: 20px; background: var(--c-black); top: 50%; left: 45%; 
+            box-shadow: 0 0 0 10px rgba(255,255,255,0.5);
+        }
+        .cross::after {
+            content: ''; position: absolute; width: 20px; height: 100px; 
+            background: var(--c-black); top: -40px; left: 40px;
+        }
+
+        @media(max-width:768px) { .home-grid { grid-template-columns: 1fr; } .visual-block { height: 300px; } }
     </style>
 </head>
 <body>
-    <div class="bg-layer">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
+    <div class="noise-overlay"></div>
+    <div class="bg-art">
+        <div class="float-shape s-red circle"></div>
+        <div class="float-shape s-blue rect"></div>
+        <div class="float-shape cross"></div>
     </div>
 
-    <button id="langToggle" class="lang-switch">CN / EN</button>
+    <button id="langToggle" class="lang-btn">CN / EN</button>
 
     <nav class="side-nav">
-        <!-- 首页是激活状态 -->
         <a href="index.html" class="nav-item active" data-page="home">HOME</a>
         <a href="works/index.html" class="nav-item" data-page="works">WORKS</a>
         <a href="thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
     </nav>
 
-    <div class="container">
-        <h1 class="site-title">REBEL YANG'S DIGITAL ATELIER</h1>
+    <div class="container fade-in-up">
+        <h1 class="page-title">REBEL YANG'S DIGITAL ATELIER</h1>
         
-        <div class="bio-layout">
-            <div class="bio-visual">RY.</div>
-            <div class="bio-text">
+        <div class="home-grid">
+            <div class="visual-block">RY.</div>
+            
+            <div class="text-block">
                 <div class="lang-cn">
                     <h2>个人简介</h2>
                     <p>我是一名AI创作者，兼具计算机本科背景与产品经理经验，曾修习油画美学。</p>
                     <p>我的创作始终致力于理性逻辑与感性表达的深度融合。作品风格游走于“破坏性极简”与“秩序性繁复”之间，在冲突与重构中寻找视觉平衡。</p>
-                    <div class="honors-box">
-                        <h3>荣誉</h3>
-                        <ul style="list-style: square; padding-left: 20px;">
-                            <li>2025第四届CDSA国际媒体艺术创意大赛 提名</li>
-                            <li>IP Shanghai 2025 AI未来看见上海 入围奖</li>
-                        </ul>
-                    </div>
-                    <div class="contact-tag">邮箱：siyi.rebel@gmail.com</div>
+                    
+                    <h2>荣誉</h2>
+                    <ul>
+                        <li>2025第四届CDSA国际媒体艺术创意大赛 提名</li>
+                        <li>IP Shanghai 2025 AI未来看见上海 入围奖</li>
+                    </ul>
+                    
+                    <div class="contact-box">邮箱：siyi.rebel@gmail.com</div>
                 </div>
 
                 <div class="lang-en">
                     <h2>Bio</h2>
                     <p>I am an AI creator with a Bachelor’s degree in Computer Science and a background in Product Management, complemented by studies in oil painting aesthetics.</p>
                     <p>My work consistently explores the fusion of rational logic and emotional expression. My style navigates the tension between “Destructive Minimalism” and “Ordered Complexity”, seeking visual balance through conflict and reconstruction.</p>
-                    <div class="honors-box">
-                        <h3>Honors</h3>
-                        <ul style="list-style: square; padding-left: 20px;">
-                            <li>Nominee, 2025 4th CDSA International Media Art Creative Competition</li>
-                            <li>Finalist, IP Shanghai 2025 “AI Future: Seeing Shanghai”</li>
-                        </ul>
-                    </div>
-                    <div class="contact-tag">Email: siyi.rebel@gmail.com</div>
+                    
+                    <h2>Honors</h2>
+                    <ul>
+                        <li>Nominee, 2025 4th CDSA International Media Art Creative Competition</li>
+                        <li>Finalist, IP Shanghai 2025 “AI Future: Seeing Shanghai”</li>
+                    </ul>
+                    
+                    <div class="contact-box">Email: siyi.rebel@gmail.com</div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 关键：引用同级目录的 JS -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -6,94 +6,110 @@
     <title>Sands of Illusion - Rebel Yang</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        /* 复用上一页的样式 */
-        .media-box { width: 100%; aspect-ratio: 16/9; background: black; border: var(--border-thick); margin-bottom: 40px; }
+        /* 复用样式 (与 Break Then 保持一致) */
+        .back-link { display: inline-block; margin-bottom: 20px; font-weight: bold; border-bottom: 2px solid var(--c-black); padding-bottom: 2px; }
+        .media-wrapper { width: 100%; aspect-ratio: 16/9; background: black; border: var(--border); margin-bottom: 50px; box-shadow: 15px 15px 0 var(--c-gray); }
         video { width: 100%; height: 100%; object-fit: contain; }
-        .header-block { border-bottom: 2px solid #ccc; margin-bottom: 30px; padding-bottom: 20px; }
-        .project-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; }
-        .tags span { display: inline-block; background: var(--c-yellow); padding: 5px 15px; font-weight: bold; border: 1px solid black; margin-right: 10px; }
-        .content-section { margin-bottom: 40px; }
-        .section-label { display: inline-block; background: var(--c-black); color: white; padding: 5px 15px; font-weight: bold; margin-bottom: 15px; }
-        .sec-blue .section-label { background: var(--c-blue); }
-        .sec-red .section-label { background: var(--c-red); }
+        .project-header { margin-bottom: 50px; border-bottom: var(--border); padding-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
+        .project-title { font-size: 3rem; font-weight: 900; line-height: 1; margin: 0; }
+        .tags { display: flex; gap: 10px; margin-top: 10px; }
+        .tag { background: var(--c-yellow); padding: 5px 15px; font-weight: bold; border: 2px solid black; }
+        .content-section { margin-bottom: 50px; position: relative; padding-left: 20px; border-left: 4px solid #ddd; }
+        .section-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; display: inline-block; background: var(--c-black); color: white; padding: 5px 15px; }
+        .sec-inspire { border-color: var(--c-yellow); } .sec-inspire .section-title { background: var(--c-yellow); color: black; }
+        .sec-analysis { border-color: var(--c-blue); } .sec-analysis .section-title { background: var(--c-blue); }
+        .sec-tools { border-color: var(--c-red); } .sec-tools .section-title { background: var(--c-red); }
+        p { margin-bottom: 15px; text-align: left; }
     </style>
 </head>
 <body>
-    <button id="langToggle" class="lang-switch">CN / EN</button>
+    <button id="langToggle" class="lang-btn">CN / EN</button>
     <nav class="side-nav">
         <a href="../index.html" class="nav-item" data-page="home">HOME</a>
         <a href="index.html" class="nav-item active" data-page="works">WORKS</a>
         <a href="../thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
     </nav>
 
-    <div class="container">
-        <div class="media-box">
-             <!-- 替换为您的视频文件 -->
-             <video controls poster="https://via.placeholder.com/1280x720/FFD700/000000?text=SANDS+OF+ILLUSION">
-                <source src="your-video-file-2.mp4" type="video/mp4">
+    <div class="container fade-in-up">
+        <a href="index.html" class="back-link">← BACK</a>
+
+        <div class="media-wrapper">
+            <video controls poster="../assets/sands-poster.jpg">
+                <source src="../assets/sands-video.mp4" type="video/mp4">
             </video>
         </div>
 
-        <div class="header-block">
-            <h1 class="project-title">Sands of Illusion</h1>
+        <div class="project-header">
+            <div>
+                <h1 class="project-title">Sands of Illusion</h1>
+            </div>
             <div class="tags">
-                <span>2025</span>
-                <span>AI Video</span>
+                <span class="tag">2025</span>
+                <span class="tag">AI Video</span>
             </div>
         </div>
 
+        <!-- 中文 -->
         <div class="lang-cn">
             <div class="content-section">
-                <div class="section-label">简介</div>
+                <div class="section-title">简介</div>
                 <p>一支商队在丝路迷宫中的轮回之旅，于几何幻境中叩问文明相遇的永恒真相。</p>
             </div>
             
-            <div class="content-section sec-blue">
-                <div class="section-label">创作灵感</div>
+            <div class="content-section sec-inspire">
+                <div class="section-title">创作灵感</div>
                 <p>这部作品的灵感源于我的一次中东独行之旅：瞬息万变的沙漠、异域特色的建筑，盘旋的乌鸦……我热衷于探索中西方文化在历史长河中的碰撞、交融与变异，并投射于我的个人美学偏好中：几何结构、色块组合与错视空间。</p>
             </div>
 
-            <div class="content-section sec-red">
-                <div class="section-label">视听语言与叙事隐喻</div>
+            <div class="content-section sec-analysis">
+                <div class="section-title">视听语言与叙事隐喻解析</div>
                 <p>本片的视觉构建在极简与繁复的辩证关系上。人间的“实体”采用极简几何体块，神性的“虚幻”采用繁复的伊斯兰几何纹样与印度曼陀罗图案。色彩肌理取自敦煌壁画，主色调遵循敦煌三原色（朱砂、青金、石黄），随叙事心境演变；建筑与沙丘的错视运动致敬M.C.埃舍尔，形成视觉迷宫。</p>
-                <p>短片开场，金色沙浪如流动的丝绸，将商队卷入几何迷宫。莲花象征觉悟，骆驼代表坚忍...</p>
-                <p>商队队长仰望佛光，高举红旗，精神之旅正式开启...</p>
-                <p>千手观音殿门开合间，本片进入高潮...“凡所有相，皆是虚妄”...</p>
-                <p><strong>听觉设计：</strong>以高亢明亮的中国竹笛作为主旋律，象征东方起点；融入中亚手鼓的切分节奏与乌德琴的弹拨。</p>
+                <p>短片开场，金色沙浪如流动的丝绸，将商队卷入几何迷宫。莲花象征觉悟，骆驼代表坚忍，当骆驼踏出圣莲印记，定格了丝路文明的融合瞬间，揭示“道路即圣殿”的哲思——追寻本身就是意义。</p>
+                <p>商队队长仰望佛光，高举红旗，精神之旅正式开启。飞天舞女化作领路人，牵引凡人跨越现实与虚幻的门槛，物质世界被吸入精神世界，完成维度跃迁。</p>
+                <p>千手观音殿门开合间，本片进入高潮。殿门初次打开，是千手观音的法力与慈悲；殿门再次打开，神像并未保留，取而代之的是变幻的海市蜃楼。“凡所有相，皆是虚妄”，千手观音的宏大与海市蜃楼的虚妄本质上是一体的。文明、神迹、辉煌的历史，或许就是沙漠热浪中的一场梦。空间错乱在这里将“循环”具象化：有即是无，终即是始。</p>
+                <p>在经历了无穷变幻与精神洗礼后，画面最终归于平静。两岸胡杨和骆驼饮水都是生命力的标志。商队再次出发。终点即起点，开启另一场轮回。也是丝路精神：生生不息，永恒不朽。</p>
+                <p><strong>听觉设计：东西方共鸣</strong></p>
+                <p>以高亢明亮的中国竹笛作为主旋律，象征东方起点；融入中亚手鼓的切分节奏与乌德琴的弹拨，勾勒西域的苍茫底色。同时，运用断奏弦乐与数字琶音，营造几何感与数字律动，形成视听通感。</p>
             </div>
 
-            <div class="content-section">
-                <div class="section-label">创作工具与幕后</div>
-                <p><strong>画面生成：</strong>清影、即梦。</p>
+            <div class="content-section sec-tools">
+                <div class="section-title">创作工具与幕后</div>
+                <p><strong>画面生成：</strong>清影（核心概念与定调）、即梦（细节调整与一致性表达）。</p>
                 <p><strong>动态生成：</strong>即梦（图生视频）。</p>
-                <p><strong>音频/音效：</strong>Stable Audio。</p>
-                <p><strong>后期剪辑：</strong>剪映。</p>
+                <p><strong>音频/音效：</strong>Stable Audio（生成符合丝路主题的融合配乐，精准把控几何律动的节奏）。</p>
+                <p><strong>后期剪辑：</strong>剪映（最终画面合成、节奏卡点与色调统一）。</p>
             </div>
         </div>
 
+        <!-- 英文 -->
         <div class="lang-en">
             <div class="content-section">
-                <div class="section-label">Logline</div>
+                <div class="section-title">Logline</div>
                 <p>A merchant caravan’s cyclical journey through a Silk Road labyrinth, seeking the eternal truths of civilization’s encounter amidst a geometric illusion.</p>
             </div>
-
-            <div class="content-section sec-blue">
-                <div class="section-label">Creative Inspiration</div>
-                <p>The inspiration for this work stems from a solo journey I took through the Middle East... I am passionate about exploring the collision, fusion, and mutation of Eastern and Western cultures throughout history.</p>
+            
+            <div class="content-section sec-inspire">
+                <div class="section-title">Creative Inspiration</div>
+                <p>The inspiration for this work stems from a solo journey I took through the Middle East: the shifting sands of the desert, the exotic architecture, and the crows circling overhead… I am passionate about exploring the collision, fusion, and mutation of Eastern and Western cultures throughout history, projecting this fascination into my personal aesthetic preferences: geometric structures, color blocking, and illusory spaces.</p>
             </div>
 
-            <div class="content-section sec-red">
-                <div class="section-label">Visual & Audio Analysis</div>
-                <p>The film’s visual construction is built upon the dialectical relationship between minimalism and complexity. The “entities” of the human realm are rendered in minimalist geometric volumes, while the “illusions” of the divine realm employ intricate Islamic geometric patterns.</p>
-                <p><strong>Auditory Design:</strong> A high-pitched, bright Chinese bamboo flute serves as the main melody...</p>
+            <div class="content-section sec-analysis">
+                <div class="section-title">Visual & Audio Language</div>
+                <p>The film’s visual construction is built upon the dialectical relationship between minimalism and complexity. The “entities” of the human realm are rendered in minimalist geometric volumes, while the “illusions” of the divine realm employ intricate Islamic geometric patterns and Indian Mandalas. The color texture is derived from Dunhuang murals; the dominant tones adhere to the Dunhuang triad (Cinnabar, Lapis Lazuli, Orpiment), evolving with the narrative’s emotional state. The trompe-l’œil movement of architecture and dunes pays tribute to M.C. Escher, forming a visual maze.</p>
+                <p>The film opens with golden sand waves flowing like silk, drawing the merchant caravan into a geometric labyrinth. The lotus symbolizes enlightenment; the camel represents steadfastness. When the camel leaves a sacred lotus footprint, it freezes a moment of Silk Road civilization fusion, revealing the philosophy that “the path itself is the sanctuary”—the seeking itself is the meaning.</p>
+                <p>The merchant caravan leader looks up at Buddha’s visage and raises a red flag high, marking the formal beginning of the spiritual journey. Apsaras dancers transform into guides, leading mortals across the threshold between reality and illusion. The material world is drawn into the spiritual world, completing a dimensional leap.</p>
+                <p>The film reaches its climax within the opening and closing of the Hall of the Thousand-Hand Guanyin. When the temple door first opens, it reveals the power and compassion of the Thousand-Hand Guanyin. When the temple door opens again, the sacred statue vanishes, replaced by shifting mirages. “All conditioned phenomena are like illusions.” The grandeur of the Guanyin and the void of the mirage are essentially one. Civilization, miracles, and glorious history may just be a dream in the desert heat. The spatial disorder here concretizes the “cycle”: form is emptiness, the end is the beginning.</p>
+                <p>After experiencing infinite transformations and spiritual baptism, the visuals finally return to tranquility. The Populus euphratica and the drinking camels symbolize vitality. The merchant caravan sets off again. The destination is the starting point, initiating another cycle. This is the spirit of the Silk Road: eternity and immortality.</p>
+                <p><strong>Auditory Design: Resonance of East and West</strong></p>
+                <p>A high-pitched, bright Chinese bamboo flute serves as the main melody, symbolizing the Eastern starting point. It is blended with the syncopated rhythms of Central Asian hand drums and the plucking of the Oud, outlining the vast backdrop of the Western Regions. Simultaneously, the use of staccato strings and digital arpeggios creates a geometric and digital rhythm, forming synesthesia between sight and sound.</p>
             </div>
 
-            <div class="content-section">
-                <div class="section-label">Creation Tools</div>
-                <p><strong>Visual:</strong> Qingying, Dreamina.</p>
-                <p><strong>Motion:</strong> Dreamina.</p>
+            <div class="content-section sec-tools">
+                <div class="section-title">Creation Tools</div>
+                <p><strong>Visual Generation:</strong> Qingying, Dreamina.</p>
+                <p><strong>Motion Generation:</strong> Dreamina.</p>
                 <p><strong>Audio:</strong> Stable Audio.</p>
-                <p><strong>Post:</strong> CapCut.</p>
+                <p><strong>Post-Production:</strong> CapCut.</p>
             </div>
         </div>
     </div>

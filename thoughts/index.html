@@ -6,99 +6,122 @@
     <title>Thoughts - Rebel Yang</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        table {
-            width: 100%; border-collapse: collapse;
-            background: white; border: var(--border-thick);
-            box-shadow: 10px 10px 0 var(--c-yellow);
-        }
-        th, td { border: 1px solid #ccc; padding: 15px; vertical-align: top; }
-        th { background: var(--c-black); color: white; text-align: left; font-weight: 900; text-transform: uppercase; }
-        td:first-child { font-weight: bold; background: #fafafa; border-right: 3px solid var(--c-black); width: 20%; color: var(--c-red); }
-        .phase-title { display: block; margin-top: 10px; font-weight: bold; color: var(--c-blue); }
+        .table-container { width: 100%; overflow-x: auto; border: var(--border); box-shadow: 15px 15px 0 var(--c-yellow); background: white; margin-bottom: 50px; }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { background: var(--c-black); color: white; padding: 20px; text-align: left; text-transform: uppercase; font-weight: 900; }
+        td { padding: 20px; border-bottom: 1px solid #ddd; vertical-align: top; font-size: 0.95rem; }
+        td:first-child { background: #fafafa; font-weight: bold; border-right: 3px solid var(--c-black); width: 20%; color: var(--c-red); }
+        .p-title { display: block; margin-top: 10px; font-weight: bold; color: var(--c-blue); }
+        
+        /* 针对表格的特殊切换逻辑 */
+        .tbody-en { display: none; }
+        body.en-mode .tbody-cn { display: none; }
+        body.en-mode .tbody-en { display: table-row-group; }
     </style>
 </head>
 <body>
-    <button id="langToggle" class="lang-switch">CN / EN</button>
+    <div class="noise-overlay"></div>
+    <div class="bg-art">
+        <div class="float-shape s-yellow" style="width:300px; height:300px; border-radius:50%; top:-100px; right:-100px;"></div>
+    </div>
+
+    <button id="langToggle" class="lang-btn">CN / EN</button>
+
     <nav class="side-nav">
         <a href="../index.html" class="nav-item" data-page="home">HOME</a>
         <a href="../works/index.html" class="nav-item" data-page="works">WORKS</a>
         <a href="index.html" class="nav-item active" data-page="thoughts">THOUGHTS</a>
     </nav>
 
-    <div class="container">
-        <h1 class="site-title">THOUGHTS</h1>
+    <div class="container fade-in-up">
+        <h1 class="page-title">THOUGHTS</h1>
         
-        <div style="overflow-x: auto;">
+        <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Phase / 阶段</th>
                         <th>Core Question / 核心问题</th>
                         <th>Key Actions / 关键行动</th>
-                        <th>Output / 产出</th>
+                        <th>Deliverables / 产出</th>
                     </tr>
                 </thead>
-                <tbody class="lang-cn">
+                <!-- 中文表体 -->
+                <tbody class="tbody-cn">
                     <tr>
-                        <td>第一阶段：主题定义与规划</td>
+                        <td>第一阶段：主题定义与规划 (立项)</td>
                         <td>我要做个关于“什么”的作品？</td>
                         <td>
-                            需求分析：明确创作的核心概念。<br>
-                            市场定位：思考作品的受众。
+                            <span class="p-title">需求分析：</span>明确创作的核心概念、情绪或想讲述的故事。<br>
+                            <span class="p-title">市场定位：</span>思考作品的受众与想达成的体验。
                         </td>
                         <td>1. 核心主题</td>
                     </tr>
                     <tr>
-                        <td>第二阶段：生成前规划</td>
-                        <td>它应该“长什么样”？</td>
+                        <td>第二阶段：生成前规划 (产品设计)</td>
+                        <td>它应该“长什么样”、“感觉如何”？</td>
                         <td>
-                            风格定义：确定视觉风格与主色调。<br>
-                            结构化拆解：拆解为分镜头。
+                            <span class="p-title">风格定义：</span>结合你的偏好（极简/极繁），确定视觉风格与主色调。<br>
+                            <span class="p-title">结构化拆解：</span>将主题拆解为连贯的“分镜头”或“视觉序列”。
                         </td>
-                        <td>2. 视觉风格指南<br>3. 主Prompt<br>4. 分镜头脚本</td>
+                        <td>2. 视觉风格指南<br>3. 主Prompt（定调）<br>4. 分镜头Prompt列表</td>
                     </tr>
                     <tr>
-                        <td>第三阶段：生成与粗剪</td>
-                        <td>如何高效产出？</td>
+                        <td>第三阶段：生成与粗剪 (开发与测试)</td>
+                        <td>如何高效产出并组装素材？</td>
                         <td>
-                            敏捷开发：批量生成备选镜头。<br>
-                            MVP构建：拼接故事主线。
+                            <span class="p-title">敏捷开发：</span>批量生成备选镜头，快速验证效果。<br>
+                            <span class="p-title">MVP构建：</span>筛选最佳素材，拼接出故事主线草稿。
                         </td>
-                        <td>5. 原始素材库<br>6. 粗剪版本</td>
+                        <td>5. 原始视频素材库<br>6. 粗剪版本</td>
                     </tr>
                     <tr>
-                        <td>第四阶段：后期与定稿</td>
-                        <td>如何提升品质？</td>
+                        <td>第四阶段：后期与定稿 (打磨上线)</td>
+                        <td>如何提升至发布品质？</td>
                         <td>
-                            核心优化：精剪节奏、统一色调。<br>
-                            集成发布：音效设计、混音。
+                            <span class="p-title">核心优化：</span>精剪节奏、统一色调、添加动效/粒子。<br>
+                            <span class="p-title">集成发布：</span>根据“先听后感”原则，完成音效设计、混音，最终渲染。
                         </td>
                         <td>7. 成片</td>
                     </tr>
                 </tbody>
-                <tbody class="lang-en">
-                     <tr>
-                        <td>Phase 1: Theme Definition</td>
+
+                <!-- 英文表体 -->
+                <tbody class="tbody-en">
+                    <tr>
+                        <td>Phase 1: Theme Definition & Planning</td>
                         <td>What is my work “about”?</td>
-                        <td>Requirement Analysis.<br>Market Positioning.</td>
+                        <td>
+                            <span class="p-title">Requirement Analysis:</span> Define the core concept, emotion, or story.<br>
+                            <span class="p-title">Market Positioning:</span> Consider the target audience and desired experience.
+                        </td>
                         <td>1. Core Theme</td>
                     </tr>
                     <tr>
-                        <td>Phase 2: Pre-generation</td>
-                        <td>What should it “look like”?</td>
-                        <td>Style Definition.<br>Structural Decomposition.</td>
-                        <td>2. Style Guide<br>3. Master Prompt<br>4. Shot List</td>
+                        <td>Phase 2: Pre-generation Planning</td>
+                        <td>What should it “look like” and “feel like”?</td>
+                        <td>
+                            <span class="p-title">Style Definition:</span> Determine visual style & primary color palette.<br>
+                            <span class="p-title">Structural Decomposition:</span> Break down the theme into a coherent sequence.
+                        </td>
+                        <td>2. Visual Style Guide<br>3. Master Prompt<br>4. Shot List</td>
                     </tr>
                     <tr>
-                        <td>Phase 3: Generation</td>
-                        <td>How to produce efficiently?</td>
-                        <td>Agile Development.<br>MVP Build.</td>
-                        <td>5. Raw Assets<br>6. Rough Cut</td>
+                        <td>Phase 3: Generation & Rough Cut</td>
+                        <td>How to produce and assemble footage efficiently?</td>
+                        <td>
+                            <span class="p-title">Agile Development:</span> Batch generate candidate shots.<br>
+                            <span class="p-title">MVP Build:</span> Assemble a draft narrative.
+                        </td>
+                        <td>5. Raw Video Assets<br>6. Rough Cut</td>
                     </tr>
                     <tr>
-                        <td>Phase 4: Finalization</td>
-                        <td>How to refine?</td>
-                        <td>Optimization.<br>Integration & Launch.</td>
+                        <td>Phase 4: Post-production & Finalization</td>
+                        <td>How to refine it to publishable quality?</td>
+                        <td>
+                            <span class="p-title">Core Optimization:</span> Pacing, color grade, effects.<br>
+                            <span class="p-title">Integration & Launch:</span> Sound design, mixing, final render.
+                        </td>
                         <td>7. Final Video</td>
                     </tr>
                 </tbody>
