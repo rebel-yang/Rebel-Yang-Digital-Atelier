@@ -6,60 +6,49 @@
     <title>Works - Rebel Yang</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 60px; }
-        
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .work-card {
-            border: var(--border); background: white;
-            transition: all 0.2s cubic-bezier(0.1, 0.7, 1.0, 0.1);
-            position: relative; display: block;
-            box-shadow: 10px 10px 0 var(--c-black);
+            border: 1px solid var(--c-gold-dim);
+            background: rgba(0,0,0,0.6);
+            transition: 0.4s; display: block; position: relative; overflow: hidden;
         }
+        .work-card:hover { border-color: var(--c-gold); transform: translateY(-10px); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
         
-        .work-card:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 15px 15px 0 var(--c-red); /* 悬停变红影 */
-        }
-        .work-card:active {
-            transform: translate(5px, 5px);
-            box-shadow: 2px 2px 0 var(--c-black);
-        }
+        .thumb { height: 220px; overflow: hidden; border-bottom: 1px solid var(--c-gold-dim); }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(40%); }
+        .work-card:hover .thumb img { transform: scale(1.1); filter: grayscale(0%); }
 
-        .thumb {
-            height: 220px; background: #000; border-bottom: var(--border);
-            overflow: hidden; position: relative;
-        }
-        .thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(100%); }
-        .work-card:hover .thumb img { filter: grayscale(0%); transform: scale(1.1); }
-
-        .info { padding: 30px; }
-        .w-title { font-size: 1.8rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
-        .tags { margin-bottom: 15px; }
-        .tag { background: var(--c-yellow); border: 2px solid black; padding: 4px 8px; font-weight: bold; font-size: 0.8rem; margin-right: 5px; }
-        .desc { color: #666; font-size: 0.9rem; }
+        .info { padding: 25px; }
+        .w-title { font-family: 'Cinzel'; font-size: 1.4rem; color: var(--c-starlight); margin-bottom: 10px; }
+        .w-tags span { color: var(--c-gold); font-size: 0.8rem; border: 1px solid var(--c-gold); padding: 2px 8px; margin-right: 5px; }
+        .w-desc { font-size: 0.9rem; color: var(--c-gray); margin-top: 15px; }
     </style>
 </head>
 <body>
-    <button id="langToggle" class="btn-retro lang-switch">CN / EN</button>
-    <nav class="side-nav">
-        <a href="../index.html" class="nav-item" data-page="home">HOME</a>
-        <a href="index.html" class="nav-item active" data-page="works">WORKS</a>
-        <a href="../thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
-    </nav>
+    <canvas id="starfield"></canvas>
+    <button id="langToggle" class="lang-switch">CN / EN</button>
 
-    <div class="container">
-        <h1 class="site-title">WORKS</h1>
+    <div class="sub-nav">
+        <a href="../index.html">HOME</a>
+        <a href="../profile.html">PROFILE</a>
+        <a href="index.html" class="active">WORKS</a>
+        <a href="../thoughts/index.html">THOUGHTS</a>
+    </div>
+
+    <div class="page-container">
+        <h1 class="page-title">THE WORKS</h1>
         
         <div class="works-grid">
             <!-- 作品1 -->
             <a href="break-then.html" class="work-card">
                 <div class="thumb">
-                    <img src="../assets/break-thumb.jpg" alt="Break Then" onerror="this.src='https://via.placeholder.com/600x400/000/fff?text=BREAK'">
+                    <img src="../assets/break-thumb.jpg" alt="Break Then" onerror="this.src='https://via.placeholder.com/600x400/000?text=Break+Then'">
                 </div>
                 <div class="info">
                     <div class="w-title">Break, then…</div>
-                    <div class="tags"><span class="tag">2025</span><span class="tag" style="background:var(--c-blue); color:white;">AI Video</span></div>
-                    <div class="desc">
-                        <span class="lang-cn">生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意在成长过程中被不断修剪...</span>
+                    <div class="w-tags"><span>2025</span><span>AI Video</span></div>
+                    <div class="w-desc">
+                        <span class="lang-cn">生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意...</span>
                         <span class="lang-en">Life is inherently as magnificent and mysterious as the Big Bang...</span>
                     </div>
                 </div>
@@ -68,19 +57,19 @@
             <!-- 作品2 -->
             <a href="sands-of-illusion.html" class="work-card">
                 <div class="thumb">
-                    <img src="../assets/sands-thumb.jpg" alt="Sands" onerror="this.src='https://via.placeholder.com/600x400/FD0/000?text=SANDS'">
+                    <img src="../assets/sands-thumb.jpg" alt="Sands" onerror="this.src='https://via.placeholder.com/600x400/D4AF37/000?text=Sands'">
                 </div>
                 <div class="info">
                     <div class="w-title">Sands of Illusion</div>
-                    <div class="tags"><span class="tag">2025</span><span class="tag" style="background:var(--c-blue); color:white;">AI Video</span></div>
-                    <div class="desc">
-                        <span class="lang-cn">一支商队在丝路迷宫中的轮回之旅，于几何幻境中叩问文明相遇的永恒真相。</span>
-                        <span class="lang-en">A merchant caravan’s cyclical journey through a Silk Road labyrinth...</span>
+                    <div class="w-tags"><span>2025</span><span>AI Video</span></div>
+                    <div class="w-desc">
+                        <span class="lang-cn">一支商队在丝路迷宫中的轮回之旅，于几何幻境中叩问...</span>
+                        <span class="lang-en">A merchant caravan’s cyclical journey through a Silk Road...</span>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-    <script src="../script.js"></script>
+    <script src="../orbit.js"></script>
 </body>
 </html>

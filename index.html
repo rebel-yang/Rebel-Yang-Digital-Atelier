@@ -6,82 +6,114 @@
     <title>Rebel Yang - Digital Atelier</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .home-wrapper {
-            display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px;
-            background: var(--c-white); border: var(--border);
-            box-shadow: 20px 20px 0 var(--c-blue); /* 蓝色硬投影 */
-            position: relative; overflow: hidden;
-        }
-        .visual-area {
-            background: var(--c-black); display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 8rem; font-weight: 900;
+        /* 首页独有样式 */
+        body { overflow: hidden; } /* 禁止首页滚动 */
+        
+        .orbit-scene {
             position: relative;
+            width: 100vw; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            perspective: 1000px;
         }
-        /* 装饰条 */
-        .visual-area::after {
-            content: ''; position: absolute; width: 100%; height: 20px;
-            background: var(--c-red); bottom: 20%; transform: rotate(-5deg) scale(1.2);
-        }
-        .content-area { padding: 50px; }
-        
-        h2 { font-size: 1.8rem; margin: 30px 0 15px; border-left: 8px solid var(--c-yellow); padding-left: 15px; font-weight: 900; text-transform: uppercase; }
-        
-        .contact-card {
-            margin-top: 40px; padding: 20px;
-            background: var(--c-black); color: var(--c-white);
-            border: 4px solid var(--c-red);
-            font-weight: bold; font-size: 1.1rem;
-            display: inline-block;
-            transform: skewX(-10deg);
-        }
-        .contact-card span { display: block; transform: skewX(10deg); }
 
-        @media(max-width:768px) { .home-wrapper { grid-template-columns: 1fr; } .visual-area { height: 250px; } }
+        /* 中心标题 */
+        .center-title {
+            position: absolute; z-index: 50;
+            text-align: center; pointer-events: none;
+            text-shadow: 0 0 20px rgba(255,255,255,0.8);
+            mix-blend-mode: overlay;
+        }
+        .center-title h1 { font-size: 3rem; margin: 0; color: white; }
+        .center-title p { font-family: 'Cinzel'; letter-spacing: 5px; color: var(--c-gold); }
+
+        /* 交互感应区 (比卡牌范围大，方便触发) */
+        .interaction-zone {
+            position: absolute; width: 800px; height: 500px;
+            z-index: 60;
+            /* background: rgba(255,0,0,0.1); 调试用 */
+        }
+
+        /* 塔罗牌容器 */
+        .orbit-container {
+            position: absolute; top: 50%; left: 50%;
+            width: 0; height: 0;
+            transform-style: preserve-3d;
+        }
+
+        /* 单张卡牌 */
+        .tarot-card {
+            position: absolute;
+            width: var(--card-width); height: var(--card-height);
+            background: rgba(10, 10, 10, 0.85);
+            border: 2px solid var(--c-gold);
+            border-radius: 10px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* 平滑过渡 */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            /* 内部装饰线 */
+            padding: 10px;
+        }
+
+        .tarot-inner {
+            width: 100%; height: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        .card-icon { font-size: 3rem; margin-bottom: 20px; color: var(--c-gold); }
+        .card-title { font-family: 'Cinzel'; font-size: 1.5rem; color: white; }
+        .card-sub { font-size: 0.8rem; color: var(--c-gray); margin-top: 5px; text-transform: uppercase; }
+
+        /* 卡牌悬停内部发光 */
+        .tarot-card:hover .tarot-inner { border-color: var(--c-gold); background: rgba(212, 175, 55, 0.1); }
+
     </style>
 </head>
 <body>
-    <button id="langToggle" class="btn-retro lang-switch">CN / EN</button>
+    <canvas id="starfield"></canvas>
+    <button id="langToggle" class="lang-switch">CN / EN</button>
 
-    <nav class="side-nav">
-        <a href="index.html" class="nav-item active" data-page="home">HOME</a>
-        <a href="works/index.html" class="nav-item" data-page="works">WORKS</a>
-        <a href="thoughts/index.html" class="nav-item" data-page="thoughts">THOUGHTS</a>
-    </nav>
+    <div class="orbit-scene">
+        <div class="center-title">
+            <h1>REBEL YANG</h1>
+            <p>DIGITAL ATELIER</p>
+        </div>
 
-    <div class="container">
-        <h1 class="site-title">REBEL YANG'S ATELIER</h1>
-        
-        <div class="home-wrapper">
-            <div class="visual-area">RY.</div>
-            <div class="content-area">
-                <div class="lang-cn">
-                    <p style="font-size:1.2rem; font-weight:bold;">我是一名AI创作者，兼具计算机本科背景与产品经理经验，曾修习油画美学。</p>
-                    <p>我的创作始终致力于理性逻辑与感性表达的深度融合。作品风格游走于“破坏性极简”与“秩序性繁复”之间，在冲突与重构中寻找视觉平衡。</p>
-                    
-                    <h2>荣誉</h2>
-                    <ul style="list-style: square; padding-left: 20px; line-height: 2;">
-                        <li>2025第四届CDSA国际媒体艺术创意大赛 <strong style="background:var(--c-yellow);">提名</strong></li>
-                        <li>IP Shanghai 2025 AI未来看见上海 <strong style="background:var(--c-yellow);">入围奖</strong></li>
-                    </ul>
-                    
-                    <div class="contact-card"><span>邮箱：siyi.rebel@gmail.com</span></div>
+        <div class="interaction-zone"></div>
+
+        <div class="orbit-container">
+            <!-- Card 1: PROFILE (原首页BIO) -->
+            <a href="profile.html" class="tarot-card">
+                <div class="tarot-inner">
+                    <div class="card-icon">✦</div>
+                    <div class="card-title">PROFILE</div>
+                    <div class="card-sub">The Creator</div>
                 </div>
+            </a>
 
-                <div class="lang-en">
-                    <p style="font-size:1.2rem; font-weight:bold;">I am an AI creator with a Bachelor’s degree in Computer Science and a background in Product Management, complemented by studies in oil painting aesthetics.</p>
-                    <p>My work consistently explores the fusion of rational logic and emotional expression. My style navigates the tension between “Destructive Minimalism” and “Ordered Complexity”, seeking visual balance through conflict and reconstruction.</p>
-                    
-                    <h2>Honors</h2>
-                    <ul style="list-style: square; padding-left: 20px; line-height: 2;">
-                        <li>Nominee, 2025 4th CDSA International Media Art Creative Competition</li>
-                        <li>Finalist, IP Shanghai 2025 “AI Future: Seeing Shanghai”</li>
-                    </ul>
-                    
-                    <div class="contact-card"><span>Email: siyi.rebel@gmail.com</span></div>
+            <!-- Card 2: WORKS -->
+            <a href="works/index.html" class="tarot-card">
+                <div class="tarot-inner">
+                    <div class="card-icon">❖</div>
+                    <div class="card-title">WORKS</div>
+                    <div class="card-sub">The Creation</div>
                 </div>
-            </div>
+            </a>
+
+            <!-- Card 3: THOUGHTS -->
+            <a href="thoughts/index.html" class="tarot-card">
+                <div class="tarot-inner">
+                    <div class="card-icon">☾</div>
+                    <div class="card-title">THOUGHTS</div>
+                    <div class="card-sub">The Wisdom</div>
+                </div>
+            </a>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="orbit.js"></script>
 </body>
 </html>
