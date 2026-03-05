@@ -4,77 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebel Yang - Cosmic Atelier</title>
-    <!-- 引入神秘字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* 首页特定修补：Bio 弹窗或区域 */
-        .bio-overlay {
-            position: absolute; bottom: 5vh; width: 100%; text-align: center;
-            opacity: 0.7; font-size: 0.8rem; pointer-events: none;
-        }
+        /* 针对不同卡牌定义扇形展开的位置 */
+        /* 一共6张牌，扇形展开 */
+        .card:nth-child(1) { --angle: 0deg;   --fan-x: -300px; --fan-rotate: -15deg; }
+        .card:nth-child(2) { --angle: 60deg;  --fan-x: -180px; --fan-rotate: -9deg; }
+        .card:nth-child(3) { --angle: 120deg; --fan-x: -60px;  --fan-rotate: -3deg; }
+        .card:nth-child(4) { --angle: 180deg; --fan-x: 60px;   --fan-rotate: 3deg; }
+        .card:nth-child(5) { --angle: 240deg; --fan-x: 180px;  --fan-rotate: 9deg; }
+        .card:nth-child(6) { --angle: 300deg; --fan-x: 300px;  --fan-rotate: 15deg; }
     </style>
 </head>
 <body>
+    <!-- 1. 背景层 -->
     <div class="cosmos-bg"></div>
-    <div class="texture-overlay"></div>
+    <div class="noise-overlay"></div>
 
-    <button id="langToggle" class="lang-switch">CN / EN</button>
+    <button id="langToggle" class="lang-btn">CN / EN</button>
 
-    <!-- 核心交互舞台 -->
-    <div class="orbit-stage">
+    <!-- 2. 上部 Bio 区域 -->
+    <section class="bio-section">
+        <div class="avatar-frame">
+            <div class="corner c-tl"></div><div class="corner c-tr"></div>
+            <div class="corner c-bl"></div><div class="corner c-br"></div>
+            <!-- [REPLACE] 替换为您的照片 -->
+            <img src="assets/avatar.jpg" class="avatar-img" alt="Rebel Yang" onerror="this.src='https://via.placeholder.com/200x260/000000/C2A878?text=REBEL'">
+        </div>
         
-        <!-- 中心恒星文字 -->
-        <div class="center-sun">
-            <div class="center-title">REBEL YANG<br>DIGITAL ATELIER</div>
-            <div style="font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; color: var(--c-blue);">EST. 2025</div>
+        <div class="bio-content">
+            <div class="lang-cn">
+                <h2 class="shimmer-text">REBEL YANG</h2>
+                <p>我是一名AI创作者，兼具计算机本科背景与产品经理经验，曾修习油画美学。</p>
+                <p>我的创作始终致力于理性逻辑与感性表达的深度融合。作品风格游走于“破坏性极简”与“秩序性繁复”之间，在冲突与重构中寻找视觉平衡。</p>
+                <ul class="honors">
+                    <li>★ 2025第四届CDSA国际媒体艺术创意大赛 提名</li>
+                    <li>★ IP Shanghai 2025 AI未来看见上海 入围奖</li>
+                </ul>
+                <p style="margin-top:20px; color:var(--c-gold-1); font-weight:bold;">Email: siyi.rebel@gmail.com</p>
+            </div>
+
+            <div class="lang-en">
+                <h2 class="shimmer-text">REBEL YANG</h2>
+                <p>I am an AI creator with a Bachelor’s degree in Computer Science and a background in Product Management, complemented by studies in oil painting aesthetics.</p>
+                <p>My style navigates the tension between “Destructive Minimalism” and “Ordered Complexity”, seeking visual balance through conflict and reconstruction.</p>
+                <ul class="honors">
+                    <li>★ Nominee, 2025 4th CDSA International Media Art Creative Competition</li>
+                    <li>★ Finalist, IP Shanghai 2025 “AI Future: Seeing Shanghai”</li>
+                </ul>
+                <p style="margin-top:20px; color:var(--c-gold-1); font-weight:bold;">Email: siyi.rebel@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 下部 罗盘交互区域 -->
+    <section class="orbit-section">
+        
+        <!-- 中心恒星 -->
+        <div class="center-label">
+            <h1>DIGITAL ATELIER</h1>
+            <p>SELECT YOUR DESTINY</p>
         </div>
 
-        <!-- 轨道环 -->
+        <!-- 旋转轨道容器 -->
         <div class="orbit-ring">
             
-            <!-- 行星1：简介 (Bio) -->
-            <!-- 这里做个小技巧：点击 HOME 直接在下面显示简介，或者跳到简介页。
-                 根据你的需求，这里设为锚点或直接展示 -->
-            <a href="#bio-section" class="planet-card p1" onclick="document.getElementById('bio-modal').style.display='flex'">
-                <div class="planet-icon">✦</div>
-                <div class="planet-text">PROFILE</div>
+            <!-- 卡牌 1: Break, then... (Video) -->
+            <a href="works/break-then.html" class="card">
+                <div class="card-inner">
+                    <!-- [REPLACE] 替换为作品缩略图 -->
+                    <img src="assets/break-thumb.jpg" class="card-img" alt="Break Then" onerror="this.src='https://via.placeholder.com/300x400/111/C2A878?text=Break'">
+                    <div class="card-info">
+                        <div class="card-type">AI VIDEO</div>
+                        <div class="card-title">Break, then…</div>
+                    </div>
+                </div>
             </a>
 
-            <!-- 行星2：作品 (Works) -->
-            <a href="works/index.html" class="planet-card p2">
-                <div class="planet-icon">❖</div>
-                <div class="planet-text">WORKS</div>
+            <!-- 卡牌 2: Sands of Illusion (Video) -->
+            <a href="works/sands-of-illusion.html" class="card">
+                <div class="card-inner">
+                    <img src="assets/sands-thumb.jpg" class="card-img" alt="Sands" onerror="this.src='https://via.placeholder.com/300x400/111/C2A878?text=Sands'">
+                    <div class="card-info">
+                        <div class="card-type">AI VIDEO</div>
+                        <div class="card-title">Sands of Illusion</div>
+                    </div>
+                </div>
             </a>
 
-            <!-- 行星3：思考 (Thoughts) -->
-            <a href="thoughts/index.html" class="planet-card p3">
-                <div class="planet-icon">۞</div>
-                <div class="planet-text">THOUGHTS</div>
+            <!-- 卡牌 3: 占位视频 (Video) -->
+            <a href="#" class="card">
+                <div class="card-inner">
+                    <img src="assets/placeholder-1.jpg" class="card-img" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/300x400/111/C2A878?text=Project+3'">
+                    <div class="card-info">
+                        <div class="card-type">AI VIDEO</div>
+                        <div class="card-title">Coming Soon</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡牌 4: 占位视频 (Video) -->
+            <a href="#" class="card">
+                <div class="card-inner">
+                    <img src="assets/placeholder-2.jpg" class="card-img" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/300x400/111/C2A878?text=Project+4'">
+                    <div class="card-info">
+                        <div class="card-type">AI VIDEO</div>
+                        <div class="card-title">Coming Soon</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡牌 5: 占位图片 (Image) -->
+            <a href="#" class="card">
+                <div class="card-inner">
+                    <img src="assets/placeholder-3.jpg" class="card-img" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/300x400/111/C2A878?text=Image+Set+1'">
+                    <div class="card-info">
+                        <div class="card-type">AI IMAGE</div>
+                        <div class="card-title">Coming Soon</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡牌 6: 占位图片 (Image) -->
+            <a href="#" class="card">
+                <div class="card-inner">
+                    <img src="assets/placeholder-4.jpg" class="card-img" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/300x400/111/C2A878?text=Image+Set+2'">
+                    <div class="card-info">
+                        <div class="card-type">AI IMAGE</div>
+                        <div class="card-title">Coming Soon</div>
+                    </div>
+                </div>
             </a>
 
         </div>
-    </div>
-
-    <!-- 简单的 Bio 弹窗 (初始隐藏) -->
-    <div id="bio-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:2000; justify-content:center; align-items:center;">
-        <div style="max-width:600px; padding:40px; border:1px solid var(--c-gold); background:var(--c-void); position:relative;">
-            <button onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; top:10px; right:10px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">×</button>
-            <h2 style="margin-top:0; color:var(--c-gold);">PROFILE</h2>
-            <div class="lang-cn">
-                <p>我是一名AI创作者，兼具计算机本科背景与产品经理经验，曾修习油画美学。我的创作始终致力于理性逻辑与感性表达的深度融合。</p>
-                <p>作品风格游走于“破坏性极简”与“秩序性繁复”之间。</p>
-                <p><strong>荣誉：</strong><br>2025第四届CDSA国际媒体艺术创意大赛 提名<br>IP Shanghai 2025 AI未来看见上海 入围奖</p>
-                <p style="color:var(--c-blue)">Email: siyi.rebel@gmail.com</p>
-            </div>
-            <div class="lang-en">
-                <p>I am an AI creator with a CS background and PM experience. My work explores the fusion of rational logic and emotional expression.</p>
-                <p>Style: Navigating between "Destructive Minimalism" and "Ordered Complexity".</p>
-                <p><strong>Honors:</strong><br>Nominee, 2025 4th CDSA<br>Finalist, IP Shanghai 2025</p>
-                <p style="color:var(--c-blue)">Email: siyi.rebel@gmail.com</p>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
