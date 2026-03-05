@@ -2,151 +2,93 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thoughts - Rebel Yang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
-    <style>
-        .table-container { 
-            width: 100%; overflow-x: auto; 
-            border: 1px solid var(--c-gold-dim);
-            background: rgba(0,0,0,0.5);
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
-        }
-        table { width: 100%; border-collapse: collapse; min-width: 800px; }
-        
-        th { 
-            background: rgba(212, 175, 55, 0.2); 
-            color: var(--c-gold); padding: 20px; text-align: left;
-            border-bottom: 2px solid var(--c-gold);
-            font-family: 'Cinzel'; font-size: 1.1rem;
-        }
-        
-        td { 
-            padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); 
-            vertical-align: top; color: #ddd; font-size: 0.95rem;
-        }
-        
-        /* 阶段列高亮 */
-        td:first-child { 
-            width: 18%; color: white; font-weight: bold; 
-            border-right: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.02);
-        }
-
-        .key-point { color: var(--c-gold); display: block; margin-bottom: 5px; font-weight: bold; }
-        
-        /* 表格内容切换逻辑 */
-        .tbody-en { display: none; }
-        body.en-mode .tbody-cn { display: none; }
-        body.en-mode .tbody-en { display: table-row-group; }
-    </style>
 </head>
 <body>
-    <canvas id="starfield"></canvas>
+    <div class="cosmos-bg"></div>
+    <div class="texture-overlay"></div>
     <button id="langToggle" class="lang-switch">CN / EN</button>
 
-    <div class="sub-nav">
-        <a href="../index.html">HOME</a>
-        <a href="../profile.html">PROFILE</a>
-        <a href="../works/index.html">WORKS</a>
-        <a href="index.html" class="active">THOUGHTS</a>
+    <div class="top-nav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../works/index.html" class="nav-link">Works</a>
+        <a href="#" class="nav-link active">Thoughts</a>
     </div>
 
     <div class="page-container">
-        <h1 class="page-title">THE WISDOM</h1>
+        <h1 class="mystic-title">METHODOLOGY</h1>
         
-        <div class="table-container">
+        <div class="stone-table-wrapper">
             <table>
                 <thead>
                     <tr>
-                        <th>Phase</th>
-                        <th>Core Question</th>
-                        <th>Key Actions</th>
-                        <th>Output</th>
+                        <th>Phase / 阶段</th>
+                        <th>Question / 核心问题</th>
+                        <th>Actions / 关键行动</th>
+                        <th>Output / 产出</th>
                     </tr>
                 </thead>
+                
                 <!-- 中文内容 -->
-                <tbody class="tbody-cn">
+                <tbody class="lang-cn">
                     <tr>
-                        <td>第一阶段：主题定义与规划 (立项)</td>
+                        <td>1. 主题定义与规划</td>
                         <td>我要做个关于“什么”的作品？</td>
-                        <td>
-                            <span class="key-point">需求分析：</span>明确创作的核心概念、情绪或想讲述的故事。<br>
-                            <span class="key-point">市场定位：</span>思考作品的受众与想达成的体验。
-                        </td>
-                        <td>1. 核心主题</td>
+                        <td>需求分析、市场定位</td>
+                        <td>核心主题</td>
                     </tr>
                     <tr>
-                        <td>第二阶段：生成前规划 (产品设计)</td>
-                        <td>它应该“长什么样”、“感觉如何”？</td>
-                        <td>
-                            <span class="key-point">风格定义：</span>结合你的偏好（极简/极繁），确定视觉风格与主色调。<br>
-                            <span class="key-point">结构化拆解：</span>将主题拆解为连贯的“分镜头”或“视觉序列”。
-                        </td>
-                        <td>2. 视觉风格指南<br>3. 主Prompt（定调）<br>4. 分镜头Prompt列表</td>
+                        <td>2. 生成前规划</td>
+                        <td>它应该“长什么样”？</td>
+                        <td>风格定义、结构化拆解</td>
+                        <td>视觉风格指南、主Prompt、分镜头脚本</td>
                     </tr>
                     <tr>
-                        <td>第三阶段：生成与粗剪 (开发与测试)</td>
-                        <td>如何高效产出并组装素材？</td>
-                        <td>
-                            <span class="key-point">敏捷开发：</span>批量生成备选镜头，快速验证效果。<br>
-                            <span class="key-point">MVP构建：</span>筛选最佳素材，拼接出故事主线草稿。
-                        </td>
-                        <td>5. 原始视频素材库<br>6. 粗剪版本</td>
+                        <td>3. 生成与粗剪</td>
+                        <td>如何高效产出素材？</td>
+                        <td>敏捷开发、MVP构建</td>
+                        <td>原始视频素材库、粗剪版本</td>
                     </tr>
                     <tr>
-                        <td>第四阶段：后期与定稿 (打磨上线)</td>
+                        <td>4. 后期与定稿</td>
                         <td>如何提升至发布品质？</td>
-                        <td>
-                            <span class="key-point">核心优化：</span>精剪节奏、统一色调、添加动效/粒子。<br>
-                            <span class="key-point">集成发布：</span>根据“先听后感”原则，完成音效设计、混音，最终渲染。
-                        </td>
-                        <td>7. 成片</td>
+                        <td>核心优化、集成发布（先听后感）</td>
+                        <td>成片</td>
                     </tr>
                 </tbody>
 
                 <!-- 英文内容 -->
-                <tbody class="tbody-en">
+                <tbody class="lang-en">
                     <tr>
-                        <td>Phase 1: Theme Definition & Planning (Project Initiation)</td>
+                        <td>1. Theme Definition</td>
                         <td>What is my work “about”?</td>
-                        <td>
-                            <span class="key-point">Requirement Analysis:</span> Define the core concept, emotion, or story.<br>
-                            <span class="key-point">Market Positioning:</span> Consider the target audience and desired experience.
-                        </td>
-                        <td>1. Core Theme</td>
+                        <td>Requirement Analysis, Positioning</td>
+                        <td>Core Theme</td>
                     </tr>
                     <tr>
-                        <td>Phase 2: Pre-generation Planning (Product Design)</td>
-                        <td>What should it “look like” and “feel like”?</td>
-                        <td>
-                            <span class="key-point">Style Definition:</span> Determine visual style & primary color palette based on your preferences (Minimalist/Maximalist).<br>
-                            <span class="key-point">Structural Decomposition:</span> Break down the theme into a coherent sequence of “shots” or “visual sequences”.
-                        </td>
-                        <td>2. Visual Style Guide<br>3. Master Prompt (Sets the tone)<br>4. Shot List Prompts (Script)</td>
+                        <td>2. Pre-generation</td>
+                        <td>What should it look like?</td>
+                        <td>Style Definition, Decomposition</td>
+                        <td>Style Guide, Master Prompt, Script</td>
                     </tr>
                     <tr>
-                        <td>Phase 3: Generation & Rough Cut (Development & Testing)</td>
-                        <td>How to produce and assemble footage efficiently?</td>
-                        <td>
-                            <span class="key-point">Agile Development:</span> Batch generate candidate shots for rapid validation.<br>
-                            <span class="key-point">MVP Build:</span> Select the best footage to assemble a draft narrative.
-                        </td>
-                        <td>5. Raw Video Asset Library<br>6. Rough Cut (Video Draft)</td>
+                        <td>3. Generation</td>
+                        <td>How to produce efficiently?</td>
+                        <td>Agile Development, MVP Build</td>
+                        <td>Raw Assets, Rough Cut</td>
                     </tr>
                     <tr>
-                        <td>Phase 4: Post-production & Finalization (Polishing & Launch)</td>
-                        <td>How to refine it to publishable quality?</td>
-                        <td>
-                            <span class="key-point">Core Optimization:</span> Fine-cut pacing, color grade, add motion/particle effects.<br>
-                            <span class="key-point">Integration & Launch:</span> Apply the “Sound before Sight” principle for sound design & mixing, then final render.
-                        </td>
-                        <td>7. Final Video</td>
+                        <td>4. Finalization</td>
+                        <td>How to refine quality?</td>
+                        <td>Optimization, Integration</td>
+                        <td>Final Video</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <script src="../orbit.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

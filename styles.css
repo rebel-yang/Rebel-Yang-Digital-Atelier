@@ -1,115 +1,261 @@
 /* =========================================
-   THEME: COSMIC TAROT & MYSTICISM
+   THEME: COSMIC MYSTICISM (UNIVERSE + TAROT)
    ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400&family=Noto+Serif+SC:wght@300;700&display=swap');
-
 :root {
-    --c-space: #050508;
-    --c-void: #000000;
-    --c-gold: #D4AF37;       /* 塔罗金 */
-    --c-gold-dim: #8a7018;
-    --c-starlight: #E0F7FA;
-    --card-width: 220px;
-    --card-height: 340px;
-    --border-gold: 1px solid var(--c-gold);
+    /* 配色：静谧黑底，蓝灰米主调 */
+    --c-void: #050508;       /* 宇宙深黑 */
+    --c-ink: #0B0C10;        /* 墨黑 */
+    --c-paper: #E6E1CF;      /* 羊皮纸米色 */
+    --c-gold: #C2A878;       /* 埃及金/星尘金 */
+    --c-blue: #455C7B;       /* 灰蓝/青金石 */
+    --c-starlight: #FFFFFF;  /* 纯白星光 */
+    
+    --font-head: "Cinzel", "Times New Roman", serif; /* 神秘衬线体 */
+    --font-body: "Lato", "PingFang SC", sans-serif;
+    
+    --card-w: 220px;
+    --card-h: 340px;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: var(--c-space);
-    color: var(--c-starlight);
-    font-family: 'Lato', 'Noto Serif SC', serif; /* 正文用衬线体增加神秘感 */
-    width: 100vw; min-height: 100vh;
+    background-color: var(--c-void);
+    color: var(--c-paper);
+    font-family: var(--font-body);
+    width: 100vw;
+    min-height: 100vh;
     overflow-x: hidden;
-    font-size: 16px;
-    line-height: 1.8;
+    /* 隐藏滚动条但允许滚动 */
+    scrollbar-width: none; 
+}
+body::-webkit-scrollbar { display: none; }
+
+/* --- 1. 背景系统 (宇宙 + 纸质感) --- */
+.cosmos-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #000000 70%);
 }
 
-a { text-decoration: none; color: inherit; transition: 0.4s; }
-
-/* 宇宙星空背景 Canvas */
-#starfield {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; pointer-events: none;
-    background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+/* 纸张噪点纹理 */
+.texture-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    pointer-events: none; opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
 }
 
-/* 标题字体 */
-h1, h2, h3, .nav-title {
-    font-family: 'Cinzel', serif;
+/* 星星容器 */
+.stars-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5;
+    pointer-events: none;
+}
+.star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle 4s infinite ease-in-out;
+}
+@keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+
+/* --- 2. 交互核心：轨道系统 (Orbit System) --- */
+.orbit-stage {
+    position: relative;
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* 中心文字 (恒星) */
+.center-sun {
+    position: absolute; z-index: 10;
+    text-align: center; pointer-events: none;
+    mix-blend-mode: overlay;
+}
+.center-title {
+    font-family: var(--font-head);
+    font-size: 3rem; letter-spacing: 4px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    background: linear-gradient(120deg, #fff, var(--c-gold), #fff);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shine 5s infinite linear;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+@keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
+
+/* 轨道环 (控制旋转) */
+.orbit-ring {
+    position: absolute;
+    width: 600px; height: 600px;
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: 50%;
+    animation: orbit-spin 60s linear infinite;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.8s var(--ease-out);
 }
 
-/* =========================================
-   UNIVERSAL UI ELEMENTS
-   ========================================= */
+/* 行星卡片 (导航项) */
+.planet-card {
+    position: absolute;
+    width: 140px; height: 200px;
+    background: rgba(11, 12, 16, 0.9);
+    border: 1px solid var(--c-gold);
+    color: var(--c-gold);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(194, 168, 120, 0.1);
+    transition: all 0.6s var(--ease-out);
+    /* 反向旋转以保持文字直立 */
+    animation: counter-spin 60s linear infinite;
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+}
 
-/* 语言切换 (金色边框) */
+/* 卡片内部装饰 */
+.planet-card::before {
+    content: ''; position: absolute; inset: 4px; border: 1px solid rgba(194, 168, 120, 0.3);
+}
+.planet-icon { font-size: 2rem; margin-bottom: 10px; opacity: 0.8; }
+.planet-text { font-family: var(--font-head); letter-spacing: 2px; font-size: 0.9rem; }
+
+/* 定位三个行星 (默认在圆周上) */
+.p1 { transform: rotate(0deg) translateY(-300px) rotate(0deg); }
+.p2 { transform: rotate(120deg) translateY(-300px) rotate(-120deg); } /* 这里使用了CSS transform技巧定位 */
+.p3 { transform: rotate(240deg) translateY(-300px) rotate(-240deg); }
+
+/* --- 3. 悬停交互：塔罗展开 (Tarot Fan) --- */
+/* 当鼠标悬停在舞台中心区域时触发 */
+.orbit-stage:hover .orbit-ring {
+    animation-play-state: paused;
+    border-color: transparent; /* 隐藏轨道线 */
+    transform: rotate(0deg) !important; /* 强制归位，这里需要JS辅助或者简化逻辑，下面用简化逻辑 */
+}
+
+/* 这种纯CSS悬停暂停并归位比较难，我们采用 "聚焦态" 样式覆盖 */
+/* 为了实现复杂的“聚拢展开”，我们让 .orbit-ring 在hover时变小并消失，让卡片脱离轨道变成扇形 */
+/* 实际上，更稳妥的方式是用绝对定位覆盖动画 */
+
+.orbit-stage:hover .planet-card {
+    animation: none; /* 停止自转 */
+    top: 50%; left: 50%;
+    margin-top: -100px; margin-left: -70px; /* 居中修正 */
+    box-shadow: 0 0 30px rgba(194, 168, 120, 0.4);
+    background: var(--c-ink);
+    border: 1px solid var(--c-blue);
+    z-index: 20;
+}
+
+/* 扇形展开位置 */
+.orbit-stage:hover .p1 { transform: translate(-160px, 20px) rotate(-15deg) scale(1.1); }
+.orbit-stage:hover .p2 { transform: translate(0, -20px) rotate(0deg) scale(1.1); }
+.orbit-stage:hover .p3 { transform: translate(160px, 20px) rotate(15deg) scale(1.1); }
+
+/* 关键帧定义 */
+@keyframes orbit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes counter-spin { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+
+
+/* --- 4. 详情页 & 列表页 通用样式 --- */
+.page-container {
+    max-width: 1000px; margin: 0 auto;
+    padding: 100px 40px; position: relative; z-index: 1;
+}
+
+/* 顶部导航 (子页面用) */
+.top-nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    display: flex; justify-content: center; gap: 40px;
+    padding: 20px; z-index: 100;
+    background: linear-gradient(to bottom, rgba(5,5,8,0.9), transparent);
+}
+.nav-link {
+    font-family: var(--font-head); color: var(--c-gray);
+    font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+    position: relative;
+}
+.nav-link.active, .nav-link:hover { color: var(--c-gold); }
+.nav-link::after {
+    content: '✦'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    opacity: 0; transition: 0.3s; color: var(--c-gold);
+}
+.nav-link.active::after { opacity: 1; top: -20px; }
+
+/* 标题与文字 */
+h1.mystic-title {
+    font-family: var(--font-head); font-size: 3rem; color: var(--c-gold);
+    text-align: center; margin-bottom: 60px;
+    text-shadow: 0 0 10px rgba(194, 168, 120, 0.3);
+    position: relative;
+}
+h1.mystic-title::after {
+    content: ''; display: block; width: 60px; height: 2px;
+    background: var(--c-blue); margin: 20px auto 0;
+}
+
+h2 { font-family: var(--font-head); color: var(--c-paper); margin-top: 40px; border-left: 3px solid var(--c-gold); padding-left: 15px; }
+p { color: #ccc; margin-bottom: 20px; font-weight: 300; text-align: justify; }
+
+/* 语言切换 */
 .lang-switch {
-    position: fixed; top: 30px; right: 30px; z-index: 1000;
-    background: transparent; color: var(--c-gold);
-    border: 1px solid var(--c-gold); padding: 8px 20px;
-    font-family: 'Cinzel', serif; cursor: pointer;
+    position: fixed; top: 20px; right: 30px; z-index: 200;
+    background: transparent; border: 1px solid var(--c-gold); color: var(--c-gold);
+    padding: 5px 15px; font-family: var(--font-head); cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
-.lang-switch:hover {
-    background: var(--c-gold); color: var(--c-void);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-}
-
+.lang-switch:hover { background: var(--c-gold); color: var(--c-ink); }
 .lang-en { display: none; }
 body.en-mode .lang-cn { display: none; }
 body.en-mode .lang-en { display: block; }
 
-/* 详情页容器 (类似魔法书页) */
-.page-container {
-    max-width: 1000px; margin: 0 auto;
-    padding: 100px 40px;
-    position: relative;
+/* --- 5. 作品卡牌 (Works Page) --- */
+.tarot-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;
+}
+.tarot-card {
+    width: var(--card-w); height: var(--card-h);
+    background: var(--c-ink); border: 2px solid var(--c-blue);
+    border-radius: 10px; position: relative; overflow: hidden;
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
+    cursor: pointer;
+}
+.tarot-card:hover {
+    transform: translateY(-20px) scale(1.05);
+    box-shadow: 0 0 30px rgba(69, 92, 123, 0.4);
+    border-color: var(--c-gold);
     z-index: 10;
-    animation: fadeIn 1s ease-out;
 }
+.tarot-img { width: 100%; height: 60%; object-fit: cover; filter: sepia(30%) contrast(1.1); }
+.tarot-info { padding: 20px; text-align: center; }
+.tarot-title { font-family: var(--font-head); color: var(--c-gold); margin-bottom: 5px; font-size: 1.1rem; }
+.tarot-tag { font-size: 0.7rem; color: var(--c-gray); letter-spacing: 1px; text-transform: uppercase; }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-/* 子页面导航 (顶部横条) */
-.sub-nav {
-    position: fixed; top: 0; left: 0; width: 100%;
-    display: flex; justify-content: center; gap: 40px;
-    padding: 20px; background: rgba(0,0,0,0.8);
-    border-bottom: 1px solid var(--c-gold-dim);
-    backdrop-filter: blur(5px); z-index: 900;
+/* --- 6. 表格 (Thoughts Page - Stone Tablet Style) --- */
+.stone-table-wrapper {
+    background: rgba(20, 20, 25, 0.8);
+    border: 4px double var(--c-blue);
+    padding: 10px; border-radius: 4px;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
 }
-.sub-nav a { color: var(--c-gray); font-family: 'Cinzel'; font-size: 0.9rem; }
-.sub-nav a:hover, .sub-nav a.active { color: var(--c-gold); text-shadow: 0 0 8px var(--c-gold); }
-
-/* 通用排版 */
-h1.page-title {
-    font-size: 3rem; color: var(--c-gold); text-align: center;
-    margin-bottom: 60px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-    border-bottom: 1px solid var(--c-gold-dim); padding-bottom: 20px;
+table { width: 100%; border-collapse: collapse; color: var(--c-paper); }
+th { 
+    font-family: var(--font-head); color: var(--c-gold); 
+    border-bottom: 1px solid var(--c-blue); padding: 20px; text-align: left; 
 }
-
-.content-box {
-    background: rgba(10, 10, 15, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px; margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
+td { 
+    padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); 
+    vertical-align: top; font-size: 0.95rem; 
 }
+td:first-child { color: var(--c-blue); font-weight: bold; width: 15%; }
 
-/* 按钮风格 */
-.btn-gold {
-    display: inline-block; border: 1px solid var(--c-gold); color: var(--c-gold);
-    padding: 10px 25px; margin-top: 20px; font-family: 'Cinzel';
-}
-.btn-gold:hover { background: var(--c-gold); color: black; box-shadow: 0 0 15px var(--c-gold); }
-
-/* 响应式适配 */
+/* --- 响应式适配 --- */
 @media (max-width: 768px) {
+    .orbit-ring { width: 300px; height: 300px; } /* 手机端缩小轨道 */
+    .center-title { font-size: 1.5rem; }
+    /* 手机端取消复杂悬停，直接改为静态排列或保留简单旋转 */
+    .orbit-stage:hover .p1 { transform: translate(0, -120px); }
+    .orbit-stage:hover .p2 { transform: translate(0, 0); }
+    .orbit-stage:hover .p3 { transform: translate(0, 120px); }
+    .tarot-card { width: 100%; height: auto; display: flex; text-align: left; }
+    .tarot-img { width: 100px; height: 100px; }
     .page-container { padding: 80px 20px; }
-    h1.page-title { font-size: 1.8rem; }
 }

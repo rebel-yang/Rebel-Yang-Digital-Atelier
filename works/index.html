@@ -3,73 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Works - Rebel Yang</title>
+    <title>Works - The Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
-    <style>
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .work-card {
-            border: 1px solid var(--c-gold-dim);
-            background: rgba(0,0,0,0.6);
-            transition: 0.4s; display: block; position: relative; overflow: hidden;
-        }
-        .work-card:hover { border-color: var(--c-gold); transform: translateY(-10px); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-        
-        .thumb { height: 220px; overflow: hidden; border-bottom: 1px solid var(--c-gold-dim); }
-        .thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(40%); }
-        .work-card:hover .thumb img { transform: scale(1.1); filter: grayscale(0%); }
-
-        .info { padding: 25px; }
-        .w-title { font-family: 'Cinzel'; font-size: 1.4rem; color: var(--c-starlight); margin-bottom: 10px; }
-        .w-tags span { color: var(--c-gold); font-size: 0.8rem; border: 1px solid var(--c-gold); padding: 2px 8px; margin-right: 5px; }
-        .w-desc { font-size: 0.9rem; color: var(--c-gray); margin-top: 15px; }
-    </style>
 </head>
 <body>
-    <canvas id="starfield"></canvas>
+    <div class="cosmos-bg"></div>
+    <div class="texture-overlay"></div>
+
     <button id="langToggle" class="lang-switch">CN / EN</button>
 
-    <div class="sub-nav">
-        <a href="../index.html">HOME</a>
-        <a href="../profile.html">PROFILE</a>
-        <a href="index.html" class="active">WORKS</a>
-        <a href="../thoughts/index.html">THOUGHTS</a>
+    <div class="top-nav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="#" class="nav-link active">Works</a>
+        <a href="../thoughts/index.html" class="nav-link">Thoughts</a>
     </div>
 
     <div class="page-container">
-        <h1 class="page-title">THE WORKS</h1>
+        <h1 class="mystic-title">THE ARCHIVES</h1>
         
-        <div class="works-grid">
-            <!-- 作品1 -->
-            <a href="break-then.html" class="work-card">
-                <div class="thumb">
-                    <img src="../assets/break-thumb.jpg" alt="Break Then" onerror="this.src='https://via.placeholder.com/600x400/000?text=Break+Then'">
-                </div>
-                <div class="info">
-                    <div class="w-title">Break, then…</div>
-                    <div class="w-tags"><span>2025</span><span>AI Video</span></div>
-                    <div class="w-desc">
-                        <span class="lang-cn">生命本如宇宙大爆炸般伟大神秘，孩童天马行空的创意...</span>
-                        <span class="lang-en">Life is inherently as magnificent and mysterious as the Big Bang...</span>
-                    </div>
+        <div class="tarot-grid">
+            
+            <!-- 卡牌 1 -->
+            <a href="break-then.html" class="tarot-card">
+                <!-- 这里的图请确保 assets/break-thumb.jpg 存在 -->
+                <img src="../assets/break-thumb.jpg" class="tarot-img" alt="Break Then">
+                <div class="tarot-info">
+                    <div class="tarot-title">Break, then…</div>
+                    <div class="tarot-tag">2025 · AI VIDEO</div>
+                    <div class="lang-cn" style="font-size:0.8rem; color:#888; margin-top:10px;">生命如宇宙大爆炸般神秘...</div>
+                    <div class="lang-en" style="font-size:0.8rem; color:#888; margin-top:10px;">Life is as magnificent as the Big Bang...</div>
                 </div>
             </a>
 
-            <!-- 作品2 -->
-            <a href="sands-of-illusion.html" class="work-card">
-                <div class="thumb">
-                    <img src="../assets/sands-thumb.jpg" alt="Sands" onerror="this.src='https://via.placeholder.com/600x400/D4AF37/000?text=Sands'">
-                </div>
-                <div class="info">
-                    <div class="w-title">Sands of Illusion</div>
-                    <div class="w-tags"><span>2025</span><span>AI Video</span></div>
-                    <div class="w-desc">
-                        <span class="lang-cn">一支商队在丝路迷宫中的轮回之旅，于几何幻境中叩问...</span>
-                        <span class="lang-en">A merchant caravan’s cyclical journey through a Silk Road...</span>
-                    </div>
+            <!-- 卡牌 2 -->
+            <a href="sands-of-illusion.html" class="tarot-card">
+                <img src="../assets/sands-thumb.jpg" class="tarot-img" alt="Sands">
+                <div class="tarot-info">
+                    <div class="tarot-title">Sands of Illusion</div>
+                    <div class="tarot-tag">2025 · AI VIDEO</div>
+                    <div class="lang-cn" style="font-size:0.8rem; color:#888; margin-top:10px;">丝路迷宫中的轮回之旅...</div>
+                    <div class="lang-en" style="font-size:0.8rem; color:#888; margin-top:10px;">Cyclical journey through a Silk Road...</div>
                 </div>
             </a>
+
         </div>
     </div>
-    <script src="../orbit.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

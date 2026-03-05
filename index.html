@@ -3,117 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebel Yang - Digital Atelier</title>
+    <title>Rebel Yang - Cosmic Atelier</title>
+    <!-- 引入神秘字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* 首页独有样式 */
-        body { overflow: hidden; } /* 禁止首页滚动 */
-        
-        .orbit-scene {
-            position: relative;
-            width: 100vw; height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            perspective: 1000px;
+        /* 首页特定修补：Bio 弹窗或区域 */
+        .bio-overlay {
+            position: absolute; bottom: 5vh; width: 100%; text-align: center;
+            opacity: 0.7; font-size: 0.8rem; pointer-events: none;
         }
-
-        /* 中心标题 */
-        .center-title {
-            position: absolute; z-index: 50;
-            text-align: center; pointer-events: none;
-            text-shadow: 0 0 20px rgba(255,255,255,0.8);
-            mix-blend-mode: overlay;
-        }
-        .center-title h1 { font-size: 3rem; margin: 0; color: white; }
-        .center-title p { font-family: 'Cinzel'; letter-spacing: 5px; color: var(--c-gold); }
-
-        /* 交互感应区 (比卡牌范围大，方便触发) */
-        .interaction-zone {
-            position: absolute; width: 800px; height: 500px;
-            z-index: 60;
-            /* background: rgba(255,0,0,0.1); 调试用 */
-        }
-
-        /* 塔罗牌容器 */
-        .orbit-container {
-            position: absolute; top: 50%; left: 50%;
-            width: 0; height: 0;
-            transform-style: preserve-3d;
-        }
-
-        /* 单张卡牌 */
-        .tarot-card {
-            position: absolute;
-            width: var(--card-width); height: var(--card-height);
-            background: rgba(10, 10, 10, 0.85);
-            border: 2px solid var(--c-gold);
-            border-radius: 10px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* 平滑过渡 */
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
-            /* 内部装饰线 */
-            padding: 10px;
-        }
-
-        .tarot-inner {
-            width: 100%; height: 100%;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-
-        .card-icon { font-size: 3rem; margin-bottom: 20px; color: var(--c-gold); }
-        .card-title { font-family: 'Cinzel'; font-size: 1.5rem; color: white; }
-        .card-sub { font-size: 0.8rem; color: var(--c-gray); margin-top: 5px; text-transform: uppercase; }
-
-        /* 卡牌悬停内部发光 */
-        .tarot-card:hover .tarot-inner { border-color: var(--c-gold); background: rgba(212, 175, 55, 0.1); }
-
     </style>
 </head>
 <body>
-    <canvas id="starfield"></canvas>
+    <div class="cosmos-bg"></div>
+    <div class="texture-overlay"></div>
+
     <button id="langToggle" class="lang-switch">CN / EN</button>
 
-    <div class="orbit-scene">
-        <div class="center-title">
-            <h1>REBEL YANG</h1>
-            <p>DIGITAL ATELIER</p>
+    <!-- 核心交互舞台 -->
+    <div class="orbit-stage">
+        
+        <!-- 中心恒星文字 -->
+        <div class="center-sun">
+            <div class="center-title">REBEL YANG<br>DIGITAL ATELIER</div>
+            <div style="font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; color: var(--c-blue);">EST. 2025</div>
         </div>
 
-        <div class="interaction-zone"></div>
-
-        <div class="orbit-container">
-            <!-- Card 1: PROFILE (原首页BIO) -->
-            <a href="profile.html" class="tarot-card">
-                <div class="tarot-inner">
-                    <div class="card-icon">✦</div>
-                    <div class="card-title">PROFILE</div>
-                    <div class="card-sub">The Creator</div>
-                </div>
+        <!-- 轨道环 -->
+        <div class="orbit-ring">
+            
+            <!-- 行星1：简介 (Bio) -->
+            <!-- 这里做个小技巧：点击 HOME 直接在下面显示简介，或者跳到简介页。
+                 根据你的需求，这里设为锚点或直接展示 -->
+            <a href="#bio-section" class="planet-card p1" onclick="document.getElementById('bio-modal').style.display='flex'">
+                <div class="planet-icon">✦</div>
+                <div class="planet-text">PROFILE</div>
             </a>
 
-            <!-- Card 2: WORKS -->
-            <a href="works/index.html" class="tarot-card">
-                <div class="tarot-inner">
-                    <div class="card-icon">❖</div>
-                    <div class="card-title">WORKS</div>
-                    <div class="card-sub">The Creation</div>
-                </div>
+            <!-- 行星2：作品 (Works) -->
+            <a href="works/index.html" class="planet-card p2">
+                <div class="planet-icon">❖</div>
+                <div class="planet-text">WORKS</div>
             </a>
 
-            <!-- Card 3: THOUGHTS -->
-            <a href="thoughts/index.html" class="tarot-card">
-                <div class="tarot-inner">
-                    <div class="card-icon">☾</div>
-                    <div class="card-title">THOUGHTS</div>
-                    <div class="card-sub">The Wisdom</div>
-                </div>
+            <!-- 行星3：思考 (Thoughts) -->
+            <a href="thoughts/index.html" class="planet-card p3">
+                <div class="planet-icon">۞</div>
+                <div class="planet-text">THOUGHTS</div>
             </a>
+
         </div>
     </div>
 
-    <script src="orbit.js"></script>
+    <!-- 简单的 Bio 弹窗 (初始隐藏) -->
+    <div id="bio-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:2000; justify-content:center; align-items:center;">
+        <div style="max-width:600px; padding:40px; border:1px solid var(--c-gold); background:var(--c-void); position:relative;">
+            <button onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute; top:10px; right:10px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">×</button>
+            <h2 style="margin-top:0; color:var(--c-gold);">PROFILE</h2>
+            <div class="lang-cn">
+                <p>我是一名AI创作者，兼具计算机本科背景与产品经理经验，曾修习油画美学。我的创作始终致力于理性逻辑与感性表达的深度融合。</p>
+                <p>作品风格游走于“破坏性极简”与“秩序性繁复”之间。</p>
+                <p><strong>荣誉：</strong><br>2025第四届CDSA国际媒体艺术创意大赛 提名<br>IP Shanghai 2025 AI未来看见上海 入围奖</p>
+                <p style="color:var(--c-blue)">Email: siyi.rebel@gmail.com</p>
+            </div>
+            <div class="lang-en">
+                <p>I am an AI creator with a CS background and PM experience. My work explores the fusion of rational logic and emotional expression.</p>
+                <p>Style: Navigating between "Destructive Minimalism" and "Ordered Complexity".</p>
+                <p><strong>Honors:</strong><br>Nominee, 2025 4th CDSA<br>Finalist, IP Shanghai 2025</p>
+                <p style="color:var(--c-blue)">Email: siyi.rebel@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
